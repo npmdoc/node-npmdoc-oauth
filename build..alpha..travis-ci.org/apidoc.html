@@ -1,0 +1,2733 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/ciaranj/node-oauth#readme"
+
+    >oauth (v0.9.15)</a>
+</h1>
+<h4>Library for interacting with OAuth 1.0, 1.0A, 2 and Echo.  Provides simplified client access and allows for construction of more complex apis and OAuth providers.</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.oauth">module oauth</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth">
+            function <span class="apidocSignatureSpan">oauth.</span>OAuth
+            <span class="apidocSignatureSpan">(requestUrl, accessUrl, consumerKey, consumerSecret, version, authorize_callback, signatureMethod, nonceSize, customHeaders )</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth2">
+            function <span class="apidocSignatureSpan">oauth.</span>OAuth2
+            <span class="apidocSignatureSpan">(clientId, clientSecret, baseSite, authorizePath, accessTokenPath, customHeaders)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuthEcho">
+            function <span class="apidocSignatureSpan">oauth.</span>OAuthEcho
+            <span class="apidocSignatureSpan">(realm, verify_credentials, consumerKey, consumerSecret, version, signatureMethod, nonceSize, customHeaders)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan"></span>oauth</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">oauth.</span>OAuth.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">oauth.</span>OAuth2.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">oauth.</span>_utils</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">oauth.</span>oauth2</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">oauth.</span>sha1</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">oauth.</span>shared</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.oauth.OAuth">module oauth.OAuth</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth.OAuth">
+            function <span class="apidocSignatureSpan">oauth.</span>OAuth
+            <span class="apidocSignatureSpan">(requestUrl, accessUrl, consumerKey, consumerSecret, version, authorize_callback, signatureMethod, nonceSize, customHeaders )</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.oauth.OAuth.prototype">module oauth.OAuth.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth.prototype._buildAuthorizationHeaders">
+            function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_buildAuthorizationHeaders
+            <span class="apidocSignatureSpan">(orderedParameters)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth.prototype._createClient">
+            function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_createClient
+            <span class="apidocSignatureSpan">( port, hostname, method, path, headers, sslEnabled )</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth.prototype._createSignature">
+            function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_createSignature
+            <span class="apidocSignatureSpan">(signatureBase, tokenSecret)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth.prototype._createSignatureBase">
+            function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_createSignatureBase
+            <span class="apidocSignatureSpan">(method, url, parameters)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth.prototype._decodeData">
+            function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_decodeData
+            <span class="apidocSignatureSpan">(toDecode)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth.prototype._encodeData">
+            function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_encodeData
+            <span class="apidocSignatureSpan">(toEncode)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth.prototype._getNonce">
+            function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_getNonce
+            <span class="apidocSignatureSpan">(nonceSize)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth.prototype._getSignature">
+            function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_getSignature
+            <span class="apidocSignatureSpan">(method, url, parameters, tokenSecret)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth.prototype._getTimestamp">
+            function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_getTimestamp
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth.prototype._isParameterNameAnOAuthParameter">
+            function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_isParameterNameAnOAuthParameter
+            <span class="apidocSignatureSpan">(parameter)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth.prototype._makeArrayOfArgumentsHash">
+            function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_makeArrayOfArgumentsHash
+            <span class="apidocSignatureSpan">(argumentsHash)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth.prototype._normaliseRequestParams">
+            function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_normaliseRequestParams
+            <span class="apidocSignatureSpan">(args)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth.prototype._normalizeUrl">
+            function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_normalizeUrl
+            <span class="apidocSignatureSpan">(url)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth.prototype._performSecureRequest">
+            function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_performSecureRequest
+            <span class="apidocSignatureSpan">( oauth_token, oauth_token_secret, method, url, extra_params, post_body, post_content_type, callback )</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth.prototype._prepareParameters">
+            function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_prepareParameters
+            <span class="apidocSignatureSpan">( oauth_token, oauth_token_secret, method, url, extra_params )</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth.prototype._putOrPost">
+            function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_putOrPost
+            <span class="apidocSignatureSpan">(method, url, oauth_token, oauth_token_secret, post_body, post_content_type, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth.prototype._sortRequestParams">
+            function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_sortRequestParams
+            <span class="apidocSignatureSpan">(argument_pairs)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth.prototype.authHeader">
+            function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>authHeader
+            <span class="apidocSignatureSpan">(url, oauth_token, oauth_token_secret, method)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth.prototype.delete">
+            function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>delete
+            <span class="apidocSignatureSpan">(url, oauth_token, oauth_token_secret, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth.prototype.get">
+            function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>get
+            <span class="apidocSignatureSpan">(url, oauth_token, oauth_token_secret, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth.prototype.getOAuthAccessToken">
+            function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>getOAuthAccessToken
+            <span class="apidocSignatureSpan">(oauth_token, oauth_token_secret, oauth_verifier, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth.prototype.getOAuthRequestToken">
+            function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>getOAuthRequestToken
+            <span class="apidocSignatureSpan">( extraParams, callback )</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth.prototype.getProtectedResource">
+            function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>getProtectedResource
+            <span class="apidocSignatureSpan">(url, method, oauth_token, oauth_token_secret, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth.prototype.post">
+            function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>post
+            <span class="apidocSignatureSpan">(url, oauth_token, oauth_token_secret, post_body, post_content_type, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth.prototype.put">
+            function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>put
+            <span class="apidocSignatureSpan">(url, oauth_token, oauth_token_secret, post_body, post_content_type, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth.prototype.setClientOptions">
+            function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>setClientOptions
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth.prototype.signUrl">
+            function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>signUrl
+            <span class="apidocSignatureSpan">(url, oauth_token, oauth_token_secret, method)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>NONCE_CHARS</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.oauth.OAuth2">module oauth.OAuth2</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth2.OAuth2">
+            function <span class="apidocSignatureSpan">oauth.</span>OAuth2
+            <span class="apidocSignatureSpan">(clientId, clientSecret, baseSite, authorizePath, accessTokenPath, customHeaders)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.oauth.OAuth2.prototype">module oauth.OAuth2.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth2.prototype._chooseHttpLibrary">
+            function <span class="apidocSignatureSpan">oauth.OAuth2.prototype.</span>_chooseHttpLibrary
+            <span class="apidocSignatureSpan">( parsedUrl )</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth2.prototype._executeRequest">
+            function <span class="apidocSignatureSpan">oauth.OAuth2.prototype.</span>_executeRequest
+            <span class="apidocSignatureSpan">( http_library, options, post_body, callback )</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth2.prototype._getAccessTokenUrl">
+            function <span class="apidocSignatureSpan">oauth.OAuth2.prototype.</span>_getAccessTokenUrl
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth2.prototype._request">
+            function <span class="apidocSignatureSpan">oauth.OAuth2.prototype.</span>_request
+            <span class="apidocSignatureSpan">(method, url, headers, post_body, access_token, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth2.prototype.buildAuthHeader">
+            function <span class="apidocSignatureSpan">oauth.OAuth2.prototype.</span>buildAuthHeader
+            <span class="apidocSignatureSpan">(token)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth2.prototype.get">
+            function <span class="apidocSignatureSpan">oauth.OAuth2.prototype.</span>get
+            <span class="apidocSignatureSpan">(url, access_token, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth2.prototype.getAuthorizeUrl">
+            function <span class="apidocSignatureSpan">oauth.OAuth2.prototype.</span>getAuthorizeUrl
+            <span class="apidocSignatureSpan">( params )</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth2.prototype.getOAuthAccessToken">
+            function <span class="apidocSignatureSpan">oauth.OAuth2.prototype.</span>getOAuthAccessToken
+            <span class="apidocSignatureSpan">(code, params, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth2.prototype.getProtectedResource">
+            function <span class="apidocSignatureSpan">oauth.OAuth2.prototype.</span>getProtectedResource
+            <span class="apidocSignatureSpan">(url, access_token, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth2.prototype.setAccessTokenName">
+            function <span class="apidocSignatureSpan">oauth.OAuth2.prototype.</span>setAccessTokenName
+            <span class="apidocSignatureSpan">( name )</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth2.prototype.setAgent">
+            function <span class="apidocSignatureSpan">oauth.OAuth2.prototype.</span>setAgent
+            <span class="apidocSignatureSpan">(agent)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth2.prototype.setAuthMethod">
+            function <span class="apidocSignatureSpan">oauth.OAuth2.prototype.</span>setAuthMethod
+            <span class="apidocSignatureSpan">( authMethod )</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuth2.prototype.useAuthorizationHeaderforGET">
+            function <span class="apidocSignatureSpan">oauth.OAuth2.prototype.</span>useAuthorizationHeaderforGET
+            <span class="apidocSignatureSpan">(useIt)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.oauth.OAuthEcho">module oauth.OAuthEcho</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.OAuthEcho.OAuthEcho">
+            function <span class="apidocSignatureSpan">oauth.</span>OAuthEcho
+            <span class="apidocSignatureSpan">(realm, verify_credentials, consumerKey, consumerSecret, version, signatureMethod, nonceSize, customHeaders)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.oauth._utils">module oauth._utils</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth._utils.isAnEarlyCloseHost">
+            function <span class="apidocSignatureSpan">oauth._utils.</span>isAnEarlyCloseHost
+            <span class="apidocSignatureSpan">( hostName )</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.oauth.oauth">module oauth.oauth</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.oauth.OAuth">
+            function <span class="apidocSignatureSpan">oauth.oauth.</span>OAuth
+            <span class="apidocSignatureSpan">(requestUrl, accessUrl, consumerKey, consumerSecret, version, authorize_callback, signatureMethod, nonceSize, customHeaders )</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.oauth.OAuthEcho">
+            function <span class="apidocSignatureSpan">oauth.oauth.</span>OAuthEcho
+            <span class="apidocSignatureSpan">(realm, verify_credentials, consumerKey, consumerSecret, version, signatureMethod, nonceSize, customHeaders)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.oauth.oauth2">module oauth.oauth2</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.oauth2.OAuth2">
+            function <span class="apidocSignatureSpan">oauth.oauth2.</span>OAuth2
+            <span class="apidocSignatureSpan">(clientId, clientSecret, baseSite, authorizePath, accessTokenPath, customHeaders)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.oauth.sha1">module oauth.sha1</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.sha1.HMACSHA1">
+            function <span class="apidocSignatureSpan">oauth.sha1.</span>HMACSHA1
+            <span class="apidocSignatureSpan">(key, data)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.oauth.shared">module oauth.shared</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.shared.DummyRequest">
+            function <span class="apidocSignatureSpan">oauth.shared.</span>DummyRequest
+            <span class="apidocSignatureSpan">( response )</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.oauth.shared.DummyResponse">
+            function <span class="apidocSignatureSpan">oauth.shared.</span>DummyResponse
+            <span class="apidocSignatureSpan">( statusCode )</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.oauth" id="apidoc.module.oauth">module oauth</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth" id="apidoc.element.oauth.OAuth">
+        function <span class="apidocSignatureSpan">oauth.</span>OAuth
+        <span class="apidocSignatureSpan">(requestUrl, accessUrl, consumerKey, consumerSecret, version, authorize_callback, signatureMethod, nonceSize, customHeaders )</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">OAuth = function (requestUrl, accessUrl, consumerKey, consumerSecret, version, authorize_callback, signatureMethod, nonceSize, customHeaders ) {
+  this._isEcho = false;
+
+  this._requestUrl= requestUrl;
+  this._accessUrl= accessUrl;
+  this._consumerKey= consumerKey;
+  this._consumerSecret= this._encodeData( consumerSecret );
+  if (signatureMethod == &#x22;RSA-SHA1&#x22;) {
+    this._privateKey = consumerSecret;
+  }
+  this._version= version;
+  if( authorize_callback === undefined ) {
+    this._authorize_callback= &#x22;oob&#x22;;
+  }
+  else {
+    this._authorize_callback= authorize_callback;
+  }
+
+  if( signatureMethod != &#x22;PLAINTEXT&#x22; &#x26;&#x26; signatureMethod != &#x22;HMAC-SHA1&#x22; &#x26;&#x26; signatureMethod != &#x22;RSA-SHA1&#x22;)
+    throw new Error(&#x22;Un-supported signature method: &#x22; + signatureMethod )
+  this._signatureMethod= signatureMethod;
+  this._nonceSize= nonceSize || 32;
+  this._headers= customHeaders || {&#x22;Accept&#x22; : &#x22;*/*&#x22;,
+                                   &#x22;Connection&#x22; : &#x22;close&#x22;,
+                                   &#x22;User-Agent&#x22; : &#x22;Node authentication&#x22;}
+  this._clientOptions= this._defaultClientOptions= {&#x22;requestTokenHttpMethod&#x22;: &#x22;POST&#x22;,
+                                                    &#x22;accessTokenHttpMethod&#x22;: &#x22;POST&#x22;,
+                                                    &#x22;followRedirects&#x22;: true};
+  this._oauthParameterSeperator = &#x22;,&#x22;;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+## OAuth1.0
+
+```javascript
+describe(&#x27;OAuth1.0&#x27;,function(){
+var OAuth = require(&#x27;oauth&#x27;);
+
+it(&#x27;tests trends Twitter API v1.1&#x27;,function(done){
+  var oauth = new OAuth.<span class="apidocCodeKeywordSpan">OAuth</span>(
+    &#x27;https://api.twitter.com/oauth/request_token&#x27;,
+    &#x27;https://api.twitter.com/oauth/access_token&#x27;,
+    &#x27;your application consumer key&#x27;,
+    &#x27;your application secret&#x27;,
+    &#x27;1.0A&#x27;,
+    null,
+    &#x27;HMAC-SHA1&#x27;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth2" id="apidoc.element.oauth.OAuth2">
+        function <span class="apidocSignatureSpan">oauth.</span>OAuth2
+        <span class="apidocSignatureSpan">(clientId, clientSecret, baseSite, authorizePath, accessTokenPath, customHeaders)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">OAuth2 = function (clientId, clientSecret, baseSite, authorizePath, accessTokenPath, customHeaders) {
+  this._clientId= clientId;
+  this._clientSecret= clientSecret;
+  this._baseSite= baseSite;
+  this._authorizeUrl= authorizePath || &#x22;/oauth/authorize&#x22;;
+  this._accessTokenUrl= accessTokenPath || &#x22;/oauth/access_token&#x22;;
+  this._accessTokenName= &#x22;access_token&#x22;;
+  this._authMethod= &#x22;Bearer&#x22;;
+  this._customHeaders = customHeaders || {};
+  this._useAuthorizationHeaderForGET= false;
+
+  //our agent
+  this._agent = undefined;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuthEcho" id="apidoc.element.oauth.OAuthEcho">
+        function <span class="apidocSignatureSpan">oauth.</span>OAuthEcho
+        <span class="apidocSignatureSpan">(realm, verify_credentials, consumerKey, consumerSecret, version, signatureMethod, nonceSize, customHeaders)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">OAuthEcho = function (realm, verify_credentials, consumerKey, consumerSecret, version, signatureMethod, nonceSize, customHeaders) {
+  this._isEcho = true;
+
+  this._realm= realm;
+  this._verifyCredentials = verify_credentials;
+  this._consumerKey= consumerKey;
+  this._consumerSecret= this._encodeData( consumerSecret );
+  if (signatureMethod == &#x22;RSA-SHA1&#x22;) {
+    this._privateKey = consumerSecret;
+  }
+  this._version= version;
+
+  if( signatureMethod != &#x22;PLAINTEXT&#x22; &#x26;&#x26; signatureMethod != &#x22;HMAC-SHA1&#x22; &#x26;&#x26; signatureMethod != &#x22;RSA-SHA1&#x22;)
+    throw new Error(&#x22;Un-supported signature method: &#x22; + signatureMethod );
+  this._signatureMethod= signatureMethod;
+  this._nonceSize= nonceSize || 32;
+  this._headers= customHeaders || {&#x22;Accept&#x22; : &#x22;*/*&#x22;,
+                                   &#x22;Connection&#x22; : &#x22;close&#x22;,
+                                   &#x22;User-Agent&#x22; : &#x22;Node authentication&#x22;};
+  this._oauthParameterSeperator = &#x22;,&#x22;;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.oauth.OAuth" id="apidoc.module.oauth.OAuth">module oauth.OAuth</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth.OAuth" id="apidoc.element.oauth.OAuth.OAuth">
+        function <span class="apidocSignatureSpan">oauth.</span>OAuth
+        <span class="apidocSignatureSpan">(requestUrl, accessUrl, consumerKey, consumerSecret, version, authorize_callback, signatureMethod, nonceSize, customHeaders )</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">OAuth = function (requestUrl, accessUrl, consumerKey, consumerSecret, version, authorize_callback, signatureMethod, nonceSize, customHeaders ) {
+  this._isEcho = false;
+
+  this._requestUrl= requestUrl;
+  this._accessUrl= accessUrl;
+  this._consumerKey= consumerKey;
+  this._consumerSecret= this._encodeData( consumerSecret );
+  if (signatureMethod == &#x22;RSA-SHA1&#x22;) {
+    this._privateKey = consumerSecret;
+  }
+  this._version= version;
+  if( authorize_callback === undefined ) {
+    this._authorize_callback= &#x22;oob&#x22;;
+  }
+  else {
+    this._authorize_callback= authorize_callback;
+  }
+
+  if( signatureMethod != &#x22;PLAINTEXT&#x22; &#x26;&#x26; signatureMethod != &#x22;HMAC-SHA1&#x22; &#x26;&#x26; signatureMethod != &#x22;RSA-SHA1&#x22;)
+    throw new Error(&#x22;Un-supported signature method: &#x22; + signatureMethod )
+  this._signatureMethod= signatureMethod;
+  this._nonceSize= nonceSize || 32;
+  this._headers= customHeaders || {&#x22;Accept&#x22; : &#x22;*/*&#x22;,
+                                   &#x22;Connection&#x22; : &#x22;close&#x22;,
+                                   &#x22;User-Agent&#x22; : &#x22;Node authentication&#x22;}
+  this._clientOptions= this._defaultClientOptions= {&#x22;requestTokenHttpMethod&#x22;: &#x22;POST&#x22;,
+                                                    &#x22;accessTokenHttpMethod&#x22;: &#x22;POST&#x22;,
+                                                    &#x22;followRedirects&#x22;: true};
+  this._oauthParameterSeperator = &#x22;,&#x22;;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+## OAuth1.0
+
+```javascript
+describe(&#x27;OAuth1.0&#x27;,function(){
+var OAuth = require(&#x27;oauth&#x27;);
+
+it(&#x27;tests trends Twitter API v1.1&#x27;,function(done){
+  var oauth = new OAuth.<span class="apidocCodeKeywordSpan">OAuth</span>(
+    &#x27;https://api.twitter.com/oauth/request_token&#x27;,
+    &#x27;https://api.twitter.com/oauth/access_token&#x27;,
+    &#x27;your application consumer key&#x27;,
+    &#x27;your application secret&#x27;,
+    &#x27;1.0A&#x27;,
+    null,
+    &#x27;HMAC-SHA1&#x27;
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.oauth.OAuth.prototype" id="apidoc.module.oauth.OAuth.prototype">module oauth.OAuth.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth.prototype._buildAuthorizationHeaders" id="apidoc.element.oauth.OAuth.prototype._buildAuthorizationHeaders">
+        function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_buildAuthorizationHeaders
+        <span class="apidocSignatureSpan">(orderedParameters)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_buildAuthorizationHeaders = function (orderedParameters) {
+  var authHeader=&#x22;OAuth &#x22;;
+  if( this._isEcho ) {
+    authHeader += &#x27;realm=&#x22;&#x27; + this._realm + &#x27;&#x22;,&#x27;;
+  }
+
+  for( var i= 0 ; i &#x3c; orderedParameters.length; i++) {
+     // Whilst the all the parameters should be included within the signature, only the oauth_ arguments
+     // should appear within the authorization header.
+     if( this._isParameterNameAnOAuthParameter(orderedParameters[i][0]) ) {
+      authHeader+= &#x22;&#x22; + this._encodeData(orderedParameters[i][0])+&#x22;=\&#x22;&#x22;+ this._encodeData(orderedParameters[i][1])+&#x22;\&#x22;&#x22;+ this._oauthParameterSeperator
+;
+     }
+  }
+
+  authHeader= authHeader.substring(0, authHeader.length-this._oauthParameterSeperator.length);
+  return authHeader;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  post_content_type= &#x22;application/x-www-form-urlencoded&#x22;;
+}
+var parsedUrl= URL.parse( url, false );
+if( parsedUrl.protocol == &#x22;http:&#x22; &#x26;&#x26; !parsedUrl.port ) parsedUrl.port= 80;
+if( parsedUrl.protocol == &#x22;https:&#x22; &#x26;&#x26; !parsedUrl.port ) parsedUrl.port= 443;
+
+var headers= {};
+var authorization = this.<span class="apidocCodeKeywordSpan">_buildAuthorizationHeaders</span>(orderedParameters);
+if ( this._isEcho ) {
+  headers[&#x22;X-Verify-Credentials-Authorization&#x22;]= authorization;
+}
+else {
+  headers[&#x22;Authorization&#x22;]= authorization;
+}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth.prototype._createClient" id="apidoc.element.oauth.OAuth.prototype._createClient">
+        function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_createClient
+        <span class="apidocSignatureSpan">( port, hostname, method, path, headers, sslEnabled )</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_createClient = function ( port, hostname, method, path, headers, sslEnabled ) {
+  var options = {
+    host: hostname,
+    port: port,
+    path: path,
+    method: method,
+    headers: headers
+  };
+  var httpModel;
+  if( sslEnabled ) {
+    httpModel= https;
+  } else {
+    httpModel= http;
+  }
+  return httpModel.request(options);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var path;
+if( !parsedUrl.pathname  || parsedUrl.pathname == &#x22;&#x22; ) parsedUrl.pathname =&#x22;/&#x22;;
+if( parsedUrl.query ) path= parsedUrl.pathname + &#x22;?&#x22;+ parsedUrl.query ;
+else path= parsedUrl.pathname;
+
+var request;
+if( parsedUrl.protocol == &#x22;https:&#x22; ) {
+  request= this.<span class="apidocCodeKeywordSpan">_createClient</span>(parsedUrl.port, parsedUrl.hostname, method, path, headers
+, true);
+}
+else {
+  request= this._createClient(parsedUrl.port, parsedUrl.hostname, method, path, headers);
+}
+
+var clientOptions = this._clientOptions;
+if( callback ) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth.prototype._createSignature" id="apidoc.element.oauth.OAuth.prototype._createSignature">
+        function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_createSignature
+        <span class="apidocSignatureSpan">(signatureBase, tokenSecret)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_createSignature = function (signatureBase, tokenSecret) {
+   if( tokenSecret === undefined ) var tokenSecret= &#x22;&#x22;;
+   else tokenSecret= this._encodeData( tokenSecret );
+   // consumerSecret is already encoded
+   var key= this._consumerSecret + &#x22;&#x26;&#x22; + tokenSecret;
+
+   var hash= &#x22;&#x22;
+   if( this._signatureMethod == &#x22;PLAINTEXT&#x22; ) {
+     hash= key;
+   }
+   else if (this._signatureMethod == &#x22;RSA-SHA1&#x22;) {
+     key = this._privateKey || &#x22;&#x22;;
+     hash= crypto.createSign(&#x22;RSA-SHA1&#x22;).update(signatureBase).sign(key, &#x27;base64&#x27;);
+   }
+   else {
+       if( crypto.Hmac ) {
+         hash = crypto.createHmac(&#x22;sha1&#x22;, key).update(signatureBase).digest(&#x22;base64&#x22;);
+       }
+       else {
+         hash= sha1.HMACSHA1(key, signatureBase);
+       }
+   }
+   return hash;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  toDecode = toDecode.replace(/\+/g, &#x22; &#x22;);
+}
+return decodeURIComponent( toDecode);
+}
+
+exports.OAuth.prototype._getSignature= function(method, url, parameters, tokenSecret) {
+var signatureBase= this._createSignatureBase(method, url, parameters);
+return this.<span class="apidocCodeKeywordSpan">_createSignature</span>( signatureBase, tokenSecret );
+}
+
+exports.OAuth.prototype._normalizeUrl= function(url) {
+var parsedUrl= URL.parse(url, true)
+ var port =&#x22;&#x22;;
+ if( parsedUrl.port ) {
+   if( (parsedUrl.protocol == &#x22;http:&#x22; &#x26;&#x26; parsedUrl.port != &#x22;80&#x22; ) ||
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth.prototype._createSignatureBase" id="apidoc.element.oauth.OAuth.prototype._createSignatureBase">
+        function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_createSignatureBase
+        <span class="apidocSignatureSpan">(method, url, parameters)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_createSignatureBase = function (method, url, parameters) {
+  url= this._encodeData( this._normalizeUrl(url) );
+  parameters= this._encodeData( parameters );
+  return method.toUpperCase() + &#x22;&#x26;&#x22; + url + &#x22;&#x26;&#x22; + parameters;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+if( toDecode != null ) {
+  toDecode = toDecode.replace(/\+/g, &#x22; &#x22;);
+}
+return decodeURIComponent( toDecode);
+}
+
+exports.OAuth.prototype._getSignature= function(method, url, parameters, tokenSecret) {
+var signatureBase= this.<span class="apidocCodeKeywordSpan">_createSignatureBase</span>(method, url, parameters);
+return this._createSignature( signatureBase, tokenSecret );
+}
+
+exports.OAuth.prototype._normalizeUrl= function(url) {
+var parsedUrl= URL.parse(url, true)
+ var port =&#x22;&#x22;;
+ if( parsedUrl.port ) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth.prototype._decodeData" id="apidoc.element.oauth.OAuth.prototype._decodeData">
+        function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_decodeData
+        <span class="apidocSignatureSpan">(toDecode)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_decodeData = function (toDecode) {
+  if( toDecode != null ) {
+    toDecode = toDecode.replace(/\+/g, &#x22; &#x22;);
+  }
+  return decodeURIComponent( toDecode);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth.prototype._encodeData" id="apidoc.element.oauth.OAuth.prototype._encodeData">
+        function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_encodeData
+        <span class="apidocSignatureSpan">(toEncode)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_encodeData = function (toEncode){
+ if( toEncode == null || toEncode == &#x22;&#x22; ) return &#x22;&#x22;
+ else {
+    var result= encodeURIComponent(toEncode);
+    // Fix the mismatch between OAuth&#x27;s  RFC3986&#x27;s and Javascript&#x27;s beliefs in what is right and wrong ;)
+    return result.replace(/\!/g, &#x22;%21&#x22;)
+                 .replace(/\&#x27;/g, &#x22;%27&#x22;)
+                 .replace(/\(/g, &#x22;%28&#x22;)
+                 .replace(/\)/g, &#x22;%29&#x22;)
+                 .replace(/\*/g, &#x22;%2A&#x22;);
+ }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+- OAuth2:   No longer sends the type=webserver argument with the OAuth2 requests (thank you bendiy)
+- OAuth2:   Provides a default (and overrideable) User-Agent header (thanks to Andrew Martens &#x26; Daniel Mahlow)
+- OAuth1:   New followRedirects client option (true by default) (thanks to Pieter Joost van de Sande)
+- OAuth1:   Adds RSA-SHA1 support (thanks to Jeffrey D. Van Alstine  &#x26; Michael Garvin &#x26;  Andreas Knecht)
+* 0.9.10
+- OAuth2:   Addresses 2 issues that came in with 0.9.9, #129 &#x26; #125 (thank you José F. Romaniello)
+* 0.9.9
+- OAuth1:   Fix the mismatch between the output of querystring.stringify() and this.<span class="apidocCodeKeywordSpan">_encodeData
+</span>(). (thank you rolandboon)
+- OAuth2:   Adds Authorization Header and supports extra headers by default ( thanks to Brian Park)
+* 0.9.8
+- OAuth1:   Support overly-strict OAuth server&#x27;s that require whitespace separating the Authorization Header parameters  (e
+.g. 500px.com) (Thanks to Christian Schwarz)
+- OAuth1:   Fix incorrect double-encoding of PLAINTEXT OAuth connections (Thanks to Joe Rozner)
+- OAuth1:   Minor safety check added when checking hostnames. (Thanks to Garrick Cheung)
+* 0.9.7
+- OAuth2:   Pass back any extra response data for calls to getOAuthAccessToken (Thanks to Tang Bo Hao)
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth.prototype._getNonce" id="apidoc.element.oauth.OAuth.prototype._getNonce">
+        function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_getNonce
+        <span class="apidocSignatureSpan">(nonceSize)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_getNonce = function (nonceSize) {
+   var result = [];
+   var chars= this.NONCE_CHARS;
+   var char_pos;
+   var nonce_chars_length= chars.length;
+
+   for (var i = 0; i &#x3c; nonceSize; i++) {
+       char_pos= Math.floor(Math.random() * nonce_chars_length);
+       result[i]=  chars[char_pos];
+   }
+   return result.join(&#x27;&#x27;);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+}
+return httpModel.request(options);
+}
+
+exports.OAuth.prototype._prepareParameters= function( oauth_token, oauth_token_secret, method, url, extra_params ) {
+var oauthParameters= {
+    &#x22;oauth_timestamp&#x22;:        this._getTimestamp(),
+    &#x22;oauth_nonce&#x22;:            this.<span class="apidocCodeKeywordSpan">_getNonce</span>(this._nonceSize),
+    &#x22;oauth_version&#x22;:          this._version,
+    &#x22;oauth_signature_method&#x22;: this._signatureMethod,
+    &#x22;oauth_consumer_key&#x22;:     this._consumerKey
+};
+
+if( oauth_token ) {
+  oauthParameters[&#x22;oauth_token&#x22;]= oauth_token;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth.prototype._getSignature" id="apidoc.element.oauth.OAuth.prototype._getSignature">
+        function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_getSignature
+        <span class="apidocSignatureSpan">(method, url, parameters, tokenSecret)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_getSignature = function (method, url, parameters, tokenSecret) {
+  var signatureBase= this._createSignatureBase(method, url, parameters);
+  return this._createSignature( signatureBase, tokenSecret );
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+if( oauth_token ) {
+  oauthParameters[&#x22;oauth_token&#x22;]= oauth_token;
+}
+
+var sig;
+if( this._isEcho ) {
+  sig = this.<span class="apidocCodeKeywordSpan">_getSignature</span>( &#x22;GET&#x22;,  this._verifyCredentials,  this._normaliseRequestParams
+(oauthParameters), oauth_token_secret);
+}
+else {
+  if( extra_params ) {
+    for( var key in extra_params ) {
+      if (extra_params.hasOwnProperty(key)) oauthParameters[key]= extra_params[key];
+    }
+  }
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth.prototype._getTimestamp" id="apidoc.element.oauth.OAuth.prototype._getTimestamp">
+        function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_getTimestamp
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_getTimestamp = function () {
+  return Math.floor( (new Date()).getTime() / 1000 );
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  httpModel= http;
+}
+return httpModel.request(options);
+}
+
+exports.OAuth.prototype._prepareParameters= function( oauth_token, oauth_token_secret, method, url, extra_params ) {
+var oauthParameters= {
+    &#x22;oauth_timestamp&#x22;:        this.<span class="apidocCodeKeywordSpan">_getTimestamp</span>(),
+    &#x22;oauth_nonce&#x22;:            this._getNonce(this._nonceSize),
+    &#x22;oauth_version&#x22;:          this._version,
+    &#x22;oauth_signature_method&#x22;: this._signatureMethod,
+    &#x22;oauth_consumer_key&#x22;:     this._consumerKey
+};
+
+if( oauth_token ) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth.prototype._isParameterNameAnOAuthParameter" id="apidoc.element.oauth.OAuth.prototype._isParameterNameAnOAuthParameter">
+        function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_isParameterNameAnOAuthParameter
+        <span class="apidocSignatureSpan">(parameter)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_isParameterNameAnOAuthParameter = function (parameter) {
+  var m = parameter.match(&#x27;^oauth_&#x27;);
+  if( m &#x26;&#x26; ( m[0] === &#x22;oauth_&#x22; ) ) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  if( this._isEcho ) {
+    authHeader += &#x27;realm=&#x22;&#x27; + this._realm + &#x27;&#x22;,&#x27;;
+  }
+
+  for( var i= 0 ; i &#x3c; orderedParameters.length; i++) {
+     // Whilst the all the parameters should be included within the signature, only the oauth_ arguments
+     // should appear within the authorization header.
+     if( this.<span class="apidocCodeKeywordSpan">_isParameterNameAnOAuthParameter</span>(orderedParameters[i][0]) ) {
+      authHeader+= &#x22;&#x22; + this._encodeData(orderedParameters[i][0])+&#x22;=\&#x22;&#x22;+ this._encodeData(orderedParameters
+[i][1])+&#x22;\&#x22;&#x22;+ this._oauthParameterSeperator;
+     }
+  }
+
+  authHeader= authHeader.substring(0, authHeader.length-this._oauthParameterSeperator.length);
+  return authHeader;
+}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth.prototype._makeArrayOfArgumentsHash" id="apidoc.element.oauth.OAuth.prototype._makeArrayOfArgumentsHash">
+        function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_makeArrayOfArgumentsHash
+        <span class="apidocSignatureSpan">(argumentsHash)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_makeArrayOfArgumentsHash = function (argumentsHash) {
+  var argument_pairs= [];
+  for(var key in argumentsHash ) {
+    if (argumentsHash.hasOwnProperty(key)) {
+       var value= argumentsHash[key];
+       if( Array.isArray(value) ) {
+         for(var i=0;i&#x3c;value.length;i++) {
+           argument_pairs[argument_pairs.length]= [key, value[i]];
+         }
+       }
+       else {
+         argument_pairs[argument_pairs.length]= [key, value];
+       }
+    }
+  }
+  return argument_pairs;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    else return a[0] &#x3c; b[0] ? -1 : 1;
+});
+
+return argument_pairs;
+}
+
+exports.OAuth.prototype._normaliseRequestParams= function(args) {
+var argument_pairs= this.<span class="apidocCodeKeywordSpan">_makeArrayOfArgumentsHash</span>(args);
+// First encode them #3.4.1.3.2 .1
+for(var i=0;i&#x3c;argument_pairs.length;i++) {
+  argument_pairs[i][0]= this._encodeData( argument_pairs[i][0] );
+  argument_pairs[i][1]= this._encodeData( argument_pairs[i][1] );
+}
+
+// Then sort them #3.4.1.3.2 .2
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth.prototype._normaliseRequestParams" id="apidoc.element.oauth.OAuth.prototype._normaliseRequestParams">
+        function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_normaliseRequestParams
+        <span class="apidocSignatureSpan">(args)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_normaliseRequestParams = function (args) {
+  var argument_pairs= this._makeArrayOfArgumentsHash(args);
+  // First encode them #3.4.1.3.2 .1
+  for(var i=0;i&#x3c;argument_pairs.length;i++) {
+    argument_pairs[i][0]= this._encodeData( argument_pairs[i][0] );
+    argument_pairs[i][1]= this._encodeData( argument_pairs[i][1] );
+  }
+
+  // Then sort them #3.4.1.3.2 .2
+  argument_pairs= this._sortRequestParams( argument_pairs );
+
+  // Then concatenate together #3.4.1.3.2 .3 &#x26; .4
+  var args= &#x22;&#x22;;
+  for(var i=0;i&#x3c;argument_pairs.length;i++) {
+      args+= argument_pairs[i][0];
+      args+= &#x22;=&#x22;
+      args+= argument_pairs[i][1];
+      if( i &#x3c; argument_pairs.length-1 ) args+= &#x22;&#x26;&#x22;;
+  }
+  return args;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+if( oauth_token ) {
+  oauthParameters[&#x22;oauth_token&#x22;]= oauth_token;
+}
+
+var sig;
+if( this._isEcho ) {
+  sig = this._getSignature( &#x22;GET&#x22;,  this._verifyCredentials,  this.<span class="apidocCodeKeywordSpan">_normaliseRequestParams
+</span>(oauthParameters), oauth_token_secret);
+}
+else {
+  if( extra_params ) {
+    for( var key in extra_params ) {
+      if (extra_params.hasOwnProperty(key)) oauthParameters[key]= extra_params[key];
+    }
+  }
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth.prototype._normalizeUrl" id="apidoc.element.oauth.OAuth.prototype._normalizeUrl">
+        function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_normalizeUrl
+        <span class="apidocSignatureSpan">(url)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_normalizeUrl = function (url) {
+  var parsedUrl= URL.parse(url, true)
+   var port =&#x22;&#x22;;
+   if( parsedUrl.port ) {
+     if( (parsedUrl.protocol == &#x22;http:&#x22; &#x26;&#x26; parsedUrl.port != &#x22;80&#x22; ) ||
+         (parsedUrl.protocol == &#x22;https:&#x22; &#x26;&#x26; parsedUrl.port != &#x22;443&#x22;) ) {
+           port= &#x22;:&#x22; + parsedUrl.port;
+         }
+   }
+
+  if( !parsedUrl.pathname  || parsedUrl.pathname == &#x22;&#x22; ) parsedUrl.pathname =&#x22;/&#x22;;
+
+  return parsedUrl.protocol + &#x22;//&#x22; + parsedUrl.hostname + port + parsedUrl.pathname;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+   args+= argument_pairs[i][1];
+   if( i &#x3c; argument_pairs.length-1 ) args+= &#x22;&#x26;&#x22;;
+  }
+  return args;
+}
+
+exports.OAuth.prototype._createSignatureBase= function(method, url, parameters) {
+  url= this._encodeData( this.<span class="apidocCodeKeywordSpan">_normalizeUrl</span>(url) );
+  parameters= this._encodeData( parameters );
+  return method.toUpperCase() + &#x22;&#x26;&#x22; + url + &#x22;&#x26;&#x22; + parameters;
+}
+
+exports.OAuth.prototype._createSignature= function(signatureBase, tokenSecret) {
+if( tokenSecret === undefined ) var tokenSecret= &#x22;&#x22;;
+else tokenSecret= this._encodeData( tokenSecret );
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth.prototype._performSecureRequest" id="apidoc.element.oauth.OAuth.prototype._performSecureRequest">
+        function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_performSecureRequest
+        <span class="apidocSignatureSpan">( oauth_token, oauth_token_secret, method, url, extra_params, post_body, post_content_type, callback )</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_performSecureRequest = function ( oauth_token, oauth_token_secret, method, url, extra_params, post_body, post_content_type, callback ) {
+  var orderedParameters= this._prepareParameters(oauth_token, oauth_token_secret, method, url, extra_params);
+
+  if( !post_content_type ) {
+    post_content_type= &#x22;application/x-www-form-urlencoded&#x22;;
+  }
+  var parsedUrl= URL.parse( url, false );
+  if( parsedUrl.protocol == &#x22;http:&#x22; &#x26;&#x26; !parsedUrl.port ) parsedUrl.port= 80;
+  if( parsedUrl.protocol == &#x22;https:&#x22; &#x26;&#x26; !parsedUrl.port ) parsedUrl.port= 443;
+
+  var headers= {};
+  var authorization = this._buildAuthorizationHeaders(orderedParameters);
+  if ( this._isEcho ) {
+    headers[&#x22;X-Verify-Credentials-Authorization&#x22;]= authorization;
+  }
+  else {
+    headers[&#x22;Authorization&#x22;]= authorization;
+  }
+
+  headers[&#x22;Host&#x22;] = parsedUrl.host
+
+  for( var key in this._headers ) {
+    if (this._headers.hasOwnProperty(key)) {
+      headers[key]= this._headers[key];
+    }
+  }
+
+  // Filter out any passed extra_params that are really to do with OAuth
+  for(var key in extra_params) {
+    if( this._isParameterNameAnOAuthParameter( key ) ) {
+      delete extra_params[key];
+    }
+  }
+
+  if( (method == &#x22;POST&#x22; || method == &#x22;PUT&#x22;)  &#x26;&#x26; ( post_body == null &#x26;&#x26; extra_params != null) ) {
+    // Fix the mismatch between the output of querystring.stringify() and this._encodeData()
+    post_body= querystring.stringify(extra_params)
+                       .replace(/\!/g, &#x22;%21&#x22;)
+                       .replace(/\&#x27;/g, &#x22;%27&#x22;)
+                       .replace(/\(/g, &#x22;%28&#x22;)
+                       .replace(/\)/g, &#x22;%29&#x22;)
+                       .replace(/\*/g, &#x22;%2A&#x22;);
+  }
+
+  if( post_body ) {
+      if ( Buffer.isBuffer(post_body) ) {
+          headers[&#x22;Content-length&#x22;]= post_body.length;
+      } else {
+          headers[&#x22;Content-length&#x22;]= Buffer.byteLength(post_body);
+      }
+  } else {
+      headers[&#x22;Content-length&#x22;]= 0;
+  }
+
+  headers[&#x22;Content-Type&#x22;]= post_content_type;
+
+  var path;
+  if( !parsedUrl.pathname  || parsedUrl.pathname == &#x22;&#x22; ) parsedUrl.pathname =&#x22;/&#x22;;
+  if( parsedUrl.query ) path= parsedUrl.pathname + &#x22;?&#x22;+ parsedUrl.query ;
+  else path= parsedUrl.pathname;
+
+  var request;
+  if( parsedUrl.protocol == &#x22;https:&#x22; ) {
+    request= this._createClient(parsedUrl.port, parsedUrl.hostname, method, path, headers, true);
+  }
+  else {
+    request= this._createClient(parsedUrl.port, parsedUrl.hostname, method, path, headers);
+  }
+
+  var clientOptions = this._clientOptions;
+  if( callback ) {
+    var data=&#x22;&#x22;;
+    var self= this;
+
+    // Some hosts *cough* google appear to close the connection early / send no content-length header
+    // allow this behaviour.
+    var allowEarlyClose= OAuthUtils.isAnEarlyCloseHost( parsedUrl.hostname );
+    var callbackCalled= false;
+    var passBackControl = function( response ) {
+      if(!callbackCalled) {
+        callbackCalled= true;
+        if ( response.statusCode &#x3e;= 200 &#x26;&#x26; response.statusCode &#x3c;= 299 ) {
+          callback(null, data, response);
+        } else {
+          // Follow 301 or 302 redirects with Location HTTP header
+          if((response.statusCode == 301 || response.statusCode == 302) &#x26;&#x26; clientOptions.followRedirects &#x26;&#x26; response.headers &#x26;&#x26;
+response.headers.location) {
+            self._performSecureRequest( oauth_token, oauth_token_secret, method, response.headers.location, extra_params, post_body
+, post_content_type,  callback);
+          }
+          else {
+            callback({ statusCode: response.statusCode, data: data }, data, response);
+          }
+        }
+      }
+    }
+
+    request.on(&#x27;response&#x27;, function (response) {
+      response.setEncoding(&#x27;utf8&#x27;);
+      response.on(&#x27;data&#x27;, function (chunk) {
+        data+=chunk;
+      });
+      response.on(&#x27;end&#x27;, function () {
+        passBackControl( response );
+      });
+      response.on(&#x27;close&#x27;, function () {
+        if( allowEarlyClose ) {
+          passBackControl( response );
+        }
+      });
+    });
+
+    request.on(&#x22;error&#x22;, function(err) {
+      if(!callbackCalled) {
+        callbackCalled= true;
+        callback( err )
+      }
+    });
+
+    if( (method == &#x22;POST&#x22; || method ==&#x22;PUT&#x22;) &#x26;&#x26; post_body ! ...</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  if(!callbackCalled) {
+    callbackCalled= true;
+    if ( response.statusCode &#x3e;= 200 &#x26;&#x26; response.statusCode &#x3c;= 299 ) {
+      callback(null, data, response);
+    } else {
+      // Follow 301 or 302 redirects with Location HTTP header
+      if((response.statusCode == 301 || response.statusCode == 302) &#x26;&#x26; clientOptions.followRedirects &#x26;&#x26; response
+.headers &#x26;&#x26; response.headers.location) {
+        self.<span class="apidocCodeKeywordSpan">_performSecureRequest</span>( oauth_token, oauth_token_secret, method, response
+.headers.location, extra_params, post_body, post_content_type,  callback);
+      }
+      else {
+        callback({ statusCode: response.statusCode, data: data }, data, response);
+      }
+    }
+  }
+}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth.prototype._prepareParameters" id="apidoc.element.oauth.OAuth.prototype._prepareParameters">
+        function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_prepareParameters
+        <span class="apidocSignatureSpan">( oauth_token, oauth_token_secret, method, url, extra_params )</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_prepareParameters = function ( oauth_token, oauth_token_secret, method, url, extra_params ) {
+  var oauthParameters= {
+      &#x22;oauth_timestamp&#x22;:        this._getTimestamp(),
+      &#x22;oauth_nonce&#x22;:            this._getNonce(this._nonceSize),
+      &#x22;oauth_version&#x22;:          this._version,
+      &#x22;oauth_signature_method&#x22;: this._signatureMethod,
+      &#x22;oauth_consumer_key&#x22;:     this._consumerKey
+  };
+
+  if( oauth_token ) {
+    oauthParameters[&#x22;oauth_token&#x22;]= oauth_token;
+  }
+
+  var sig;
+  if( this._isEcho ) {
+    sig = this._getSignature( &#x22;GET&#x22;,  this._verifyCredentials,  this._normaliseRequestParams(oauthParameters), oauth_token_secret
+);
+  }
+  else {
+    if( extra_params ) {
+      for( var key in extra_params ) {
+        if (extra_params.hasOwnProperty(key)) oauthParameters[key]= extra_params[key];
+      }
+    }
+    var parsedUrl= URL.parse( url, false );
+
+    if( parsedUrl.query ) {
+      var key2;
+      var extraParameters= querystring.parse(parsedUrl.query);
+      for(var key in extraParameters ) {
+        var value= extraParameters[key];
+          if( typeof value == &#x22;object&#x22; ){
+            // TODO: This probably should be recursive
+            for(key2 in value){
+              oauthParameters[key + &#x22;[&#x22; + key2 + &#x22;]&#x22;] = value[key2];
+            }
+          } else {
+            oauthParameters[key]= value;
+          }
+        }
+    }
+
+    sig = this._getSignature( method,  url,  this._normaliseRequestParams(oauthParameters), oauth_token_secret);
+  }
+
+  var orderedParameters= this._sortRequestParams( this._makeArrayOfArgumentsHash(oauthParameters) );
+  orderedParameters[orderedParameters.length]= [&#x22;oauth_signature&#x22;, sig];
+  return orderedParameters;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+var orderedParameters= this._sortRequestParams( this._makeArrayOfArgumentsHash(oauthParameters) );
+orderedParameters[orderedParameters.length]= [&#x22;oauth_signature&#x22;, sig];
+return orderedParameters;
+}
+
+exports.OAuth.prototype._performSecureRequest= function( oauth_token, oauth_token_secret, method, url, extra_params, post_body,
+post_content_type,  callback ) {
+var orderedParameters= this.<span class="apidocCodeKeywordSpan">_prepareParameters</span>(oauth_token, oauth_token_secret, method
+, url, extra_params);
+
+if( !post_content_type ) {
+  post_content_type= &#x22;application/x-www-form-urlencoded&#x22;;
+}
+var parsedUrl= URL.parse( url, false );
+if( parsedUrl.protocol == &#x22;http:&#x22; &#x26;&#x26; !parsedUrl.port ) parsedUrl.port= 80;
+if( parsedUrl.protocol == &#x22;https:&#x22; &#x26;&#x26; !parsedUrl.port ) parsedUrl.port= 443;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth.prototype._putOrPost" id="apidoc.element.oauth.OAuth.prototype._putOrPost">
+        function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_putOrPost
+        <span class="apidocSignatureSpan">(method, url, oauth_token, oauth_token_secret, post_body, post_content_type, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_putOrPost = function (method, url, oauth_token, oauth_token_secret, post_body, post_content_type, callback) {
+  var extra_params= null;
+  if( typeof post_content_type == &#x22;function&#x22; ) {
+    callback= post_content_type;
+    post_content_type= null;
+  }
+  if ( typeof post_body != &#x22;string&#x22; &#x26;&#x26; !Buffer.isBuffer(post_body) ) {
+    post_content_type= &#x22;application/x-www-form-urlencoded&#x22;
+    extra_params= post_body;
+    post_body= null;
+  }
+  return this._performSecureRequest( oauth_token, oauth_token_secret, method, url, extra_params, post_body, post_content_type, callback
+ );
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    post_body= null;
+  }
+  return this._performSecureRequest( oauth_token, oauth_token_secret, method, url, extra_params, post_body, post_content_type, callback
+ );
+}
+
+
+exports.OAuth.prototype.put= function(url, oauth_token, oauth_token_secret, post_body, post_content_type, callback) {
+  return this.<span class="apidocCodeKeywordSpan">_putOrPost</span>(&#x22;PUT&#x22;, url, oauth_token, oauth_token_secret, post_body
+, post_content_type, callback);
+}
+
+exports.OAuth.prototype.post= function(url, oauth_token, oauth_token_secret, post_body, post_content_type, callback) {
+  return this._putOrPost(&#x22;POST&#x22;, url, oauth_token, oauth_token_secret, post_body, post_content_type, callback);
+}
+
+/**
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth.prototype._sortRequestParams" id="apidoc.element.oauth.OAuth.prototype._sortRequestParams">
+        function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>_sortRequestParams
+        <span class="apidocSignatureSpan">(argument_pairs)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_sortRequestParams = function (argument_pairs) {
+  // Sort by name, then value.
+  argument_pairs.sort(function(a,b) {
+      if ( a[0]== b[0] )  {
+        return a[1] &#x3c; b[1] ? -1 : 1;
+      }
+      else return a[0] &#x3c; b[0] ? -1 : 1;
+  });
+
+  return argument_pairs;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+// First encode them #3.4.1.3.2 .1
+for(var i=0;i&#x3c;argument_pairs.length;i++) {
+  argument_pairs[i][0]= this._encodeData( argument_pairs[i][0] );
+  argument_pairs[i][1]= this._encodeData( argument_pairs[i][1] );
+}
+
+// Then sort them #3.4.1.3.2 .2
+argument_pairs= this.<span class="apidocCodeKeywordSpan">_sortRequestParams</span>( argument_pairs );
+
+// Then concatenate together #3.4.1.3.2 .3 &#x26; .4
+var args= &#x22;&#x22;;
+for(var i=0;i&#x3c;argument_pairs.length;i++) {
+    args+= argument_pairs[i][0];
+    args+= &#x22;=&#x22;
+    args+= argument_pairs[i][1];
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth.prototype.authHeader" id="apidoc.element.oauth.OAuth.prototype.authHeader">
+        function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>authHeader
+        <span class="apidocSignatureSpan">(url, oauth_token, oauth_token_secret, method)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">authHeader = function (url, oauth_token, oauth_token_secret, method) {
+  if( method === undefined ) {
+    var method= &#x22;GET&#x22;;
+  }
+
+  var orderedParameters= this._prepareParameters(oauth_token, oauth_token_secret, method, url, {});
+  return this._buildAuthorizationHeaders(orderedParameters);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth.prototype.delete" id="apidoc.element.oauth.OAuth.prototype.delete">
+        function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>delete
+        <span class="apidocSignatureSpan">(url, oauth_token, oauth_token_secret, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">delete = function (url, oauth_token, oauth_token_secret, callback) {
+  return this._performSecureRequest( oauth_token, oauth_token_secret, &#x22;DELETE&#x22;, url, null, &#x22;&#x22;, null, callback );
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth.prototype.get" id="apidoc.element.oauth.OAuth.prototype.get">
+        function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>get
+        <span class="apidocSignatureSpan">(url, oauth_token, oauth_token_secret, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">get = function (url, oauth_token, oauth_token_secret, callback) {
+  return this._performSecureRequest( oauth_token, oauth_token_secret, &#x22;GET&#x22;, url, null, &#x22;&#x22;, null, callback );
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  &#x27;https://api.twitter.com/oauth/access_token&#x27;,
+  &#x27;your application consumer key&#x27;,
+  &#x27;your application secret&#x27;,
+  &#x27;1.0A&#x27;,
+  null,
+  &#x27;HMAC-SHA1&#x27;
+);
+oauth.<span class="apidocCodeKeywordSpan">get</span>(
+  &#x27;https://api.twitter.com/1.1/trends/place.json?id=23424977&#x27;,
+  &#x27;your user token for this app&#x27;, //test user token
+  &#x27;your user secret for this app&#x27;, //test user secret
+  function (e, data, res){
+    if (e) console.error(e);
+    console.log(require(&#x27;util&#x27;).inspect(data));
+    done();
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth.prototype.getOAuthAccessToken" id="apidoc.element.oauth.OAuth.prototype.getOAuthAccessToken">
+        function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>getOAuthAccessToken
+        <span class="apidocSignatureSpan">(oauth_token, oauth_token_secret, oauth_verifier, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getOAuthAccessToken = function (oauth_token, oauth_token_secret, oauth_verifier, callback) {
+  var extraParams= {};
+  if( typeof oauth_verifier == &#x22;function&#x22; ) {
+    callback= oauth_verifier;
+  } else {
+    extraParams.oauth_verifier= oauth_verifier;
+  }
+
+   this._performSecureRequest( oauth_token, oauth_token_secret, this._clientOptions.accessTokenHttpMethod, this._accessUrl, extraParams
+, null, null, function(error, data, response) {
+         if( error ) callback(error);
+         else {
+           var results= querystring.parse( data );
+           var oauth_access_token= results[&#x22;oauth_token&#x22;];
+           delete results[&#x22;oauth_token&#x22;];
+           var oauth_access_token_secret= results[&#x22;oauth_token_secret&#x22;];
+           delete results[&#x22;oauth_token_secret&#x22;];
+           callback(null, oauth_access_token, oauth_access_token_secret, results );
+         }
+   })
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  var twitterConsumerSecret = &#x27;your secret&#x27;;
+  var oauth2 = new OAuth2(server.config.keys.twitter.consumerKey,
+    twitterConsumerSecret,
+    &#x27;https://api.twitter.com/&#x27;,
+    null,
+    &#x27;oauth2/token&#x27;,
+    null);
+  oauth2.<span class="apidocCodeKeywordSpan">getOAuthAccessToken</span>(
+    &#x27;&#x27;,
+    {&#x27;grant_type&#x27;:&#x27;client_credentials&#x27;},
+    function (e, access_token, refresh_token, results){
+    console.log(&#x27;bearer: &#x27;,access_token);
+    done();
+  });
+});
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth.prototype.getOAuthRequestToken" id="apidoc.element.oauth.OAuth.prototype.getOAuthRequestToken">
+        function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>getOAuthRequestToken
+        <span class="apidocSignatureSpan">( extraParams, callback )</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getOAuthRequestToken = function ( extraParams, callback ) {
+   if( typeof extraParams == &#x22;function&#x22; ){
+     callback = extraParams;
+     extraParams = {};
+   }
+  // Callbacks are 1.0A related
+  if( this._authorize_callback ) {
+    extraParams[&#x22;oauth_callback&#x22;]= this._authorize_callback;
+  }
+  this._performSecureRequest( null, null, this._clientOptions.requestTokenHttpMethod, this._requestUrl, extraParams, null, null,
+function(error, data, response) {
+    if( error ) callback(error);
+    else {
+      var results= querystring.parse(data);
+
+      var oauth_token= results[&#x22;oauth_token&#x22;];
+      var oauth_token_secret= results[&#x22;oauth_token_secret&#x22;];
+      delete results[&#x22;oauth_token&#x22;];
+      delete results[&#x22;oauth_token_secret&#x22;];
+      callback(null, oauth_token, oauth_token_secret,  results );
+    }
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+                &#x22;http://term.ie/oauth/example/access_token.php&#x22;,
+                &#x22;key&#x22;,
+                &#x22;secret&#x22;,
+                &#x22;1.0&#x22;,
+                null,
+                &#x22;HMAC-SHA1&#x22;)
+
+oa.<span class="apidocCodeKeywordSpan">getOAuthRequestToken</span>(function(error, oauth_token, oauth_token_secret, results){
+if(error) util.puts(&#x27;error :&#x27; + error)
+else {
+  util.puts(&#x27;oauth_token :&#x27; + oauth_token)
+  util.puts(&#x27;oauth_token_secret :&#x27; + oauth_token_secret)
+  util.puts(&#x27;requestoken results :&#x27; + util.inspect(results))
+  util.puts(&#x22;Requesting access token&#x22;)
+  oa.getOAuthAccessToken(oauth_token, oauth_token_secret, function(error, oauth_access_token, oauth_access_token_secret, results2
+) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth.prototype.getProtectedResource" id="apidoc.element.oauth.OAuth.prototype.getProtectedResource">
+        function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>getProtectedResource
+        <span class="apidocSignatureSpan">(url, method, oauth_token, oauth_token_secret, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getProtectedResource = function (url, method, oauth_token, oauth_token_secret, callback) {
+  this._performSecureRequest( oauth_token, oauth_token_secret, method, url, null, &#x22;&#x22;, null, callback );
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    util.puts(&#x22;Requesting access token&#x22;)
+    oa.getOAuthAccessToken(oauth_token, oauth_token_secret, function(error, oauth_access_token, oauth_access_token_secret, results2
+) {
+      util.puts(&#x27;oauth_access_token :&#x27; + oauth_access_token)
+      util.puts(&#x27;oauth_token_secret :&#x27; + oauth_access_token_secret)
+      util.puts(&#x27;accesstoken results :&#x27; + util.inspect(results2))
+      util.puts(&#x22;Requesting access token&#x22;)
+      var data= &#x22;&#x22;;
+      oa.<span class="apidocCodeKeywordSpan">getProtectedResource</span>(&#x22;http://term.ie/oauth/example/echo_api.php?foo=bar
+&#x26;too=roo&#x22;, &#x22;GET&#x22;, oauth_access_token, oauth_access_token_secret,  function (error, data, response) {
+          util.puts(data);
+      });
+    });
+  }
+})
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth.prototype.post" id="apidoc.element.oauth.OAuth.prototype.post">
+        function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>post
+        <span class="apidocSignatureSpan">(url, oauth_token, oauth_token_secret, post_body, post_content_type, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">post = function (url, oauth_token, oauth_token_secret, post_body, post_content_type, callback) {
+  return this._putOrPost(&#x22;POST&#x22;, url, oauth_token, oauth_token_secret, post_body, post_content_type, callback);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth.prototype.put" id="apidoc.element.oauth.OAuth.prototype.put">
+        function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>put
+        <span class="apidocSignatureSpan">(url, oauth_token, oauth_token_secret, post_body, post_content_type, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">put = function (url, oauth_token, oauth_token_secret, post_body, post_content_type, callback) {
+  return this._putOrPost(&#x22;PUT&#x22;, url, oauth_token, oauth_token_secret, post_body, post_content_type, callback);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth.prototype.setClientOptions" id="apidoc.element.oauth.OAuth.prototype.setClientOptions">
+        function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>setClientOptions
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">setClientOptions = function (options) {
+  var key,
+      mergedOptions= {},
+      hasOwnProperty= Object.prototype.hasOwnProperty;
+
+  for( key in this._defaultClientOptions ) {
+    if( !hasOwnProperty.call(options, key) ) {
+      mergedOptions[key]= this._defaultClientOptions[key];
+    } else {
+      mergedOptions[key]= options[key];
+    }
+  }
+
+  this._clientOptions= mergedOptions;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth.prototype.signUrl" id="apidoc.element.oauth.OAuth.prototype.signUrl">
+        function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>signUrl
+        <span class="apidocSignatureSpan">(url, oauth_token, oauth_token_secret, method)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">signUrl = function (url, oauth_token, oauth_token_secret, method) {
+
+  if( method === undefined ) {
+    var method= &#x22;GET&#x22;;
+  }
+
+  var orderedParameters= this._prepareParameters(oauth_token, oauth_token_secret, method, url, {});
+  var parsedUrl= URL.parse( url, false );
+
+  var query=&#x22;&#x22;;
+  for( var i= 0 ; i &#x3c; orderedParameters.length; i++) {
+    query+= orderedParameters[i][0]+&#x22;=&#x22;+ this._encodeData(orderedParameters[i][1]) + &#x22;&#x26;&#x22;;
+  }
+  query= query.substring(0, query.length-1);
+
+  return parsedUrl.protocol + &#x22;//&#x22;+ parsedUrl.host + parsedUrl.pathname + &#x22;?&#x22; + query;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.oauth.OAuth2" id="apidoc.module.oauth.OAuth2">module oauth.OAuth2</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth2.OAuth2" id="apidoc.element.oauth.OAuth2.OAuth2">
+        function <span class="apidocSignatureSpan">oauth.</span>OAuth2
+        <span class="apidocSignatureSpan">(clientId, clientSecret, baseSite, authorizePath, accessTokenPath, customHeaders)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">OAuth2 = function (clientId, clientSecret, baseSite, authorizePath, accessTokenPath, customHeaders) {
+  this._clientId= clientId;
+  this._clientSecret= clientSecret;
+  this._baseSite= baseSite;
+  this._authorizeUrl= authorizePath || &#x22;/oauth/authorize&#x22;;
+  this._accessTokenUrl= accessTokenPath || &#x22;/oauth/access_token&#x22;;
+  this._accessTokenName= &#x22;access_token&#x22;;
+  this._authMethod= &#x22;Bearer&#x22;;
+  this._customHeaders = customHeaders || {};
+  this._useAuthorizationHeaderForGET= false;
+
+  //our agent
+  this._agent = undefined;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.oauth.OAuth2.prototype" id="apidoc.module.oauth.OAuth2.prototype">module oauth.OAuth2.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth2.prototype._chooseHttpLibrary" id="apidoc.element.oauth.OAuth2.prototype._chooseHttpLibrary">
+        function <span class="apidocSignatureSpan">oauth.OAuth2.prototype.</span>_chooseHttpLibrary
+        <span class="apidocSignatureSpan">( parsedUrl )</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_chooseHttpLibrary = function ( parsedUrl ) {
+  var http_library= https;
+  // As this is OAUth2, we *assume* https unless told explicitly otherwise.
+  if( parsedUrl.protocol != &#x22;https:&#x22; ) {
+    http_library= http;
+  }
+  return http_library;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+exports.OAuth2.prototype._request= function(method, url, headers, post_body, access_token, callback) {
+
+var parsedUrl= URL.parse( url, true );
+if( parsedUrl.protocol == &#x22;https:&#x22; &#x26;&#x26; !parsedUrl.port ) {
+  parsedUrl.port= 443;
+}
+
+var http_library= this.<span class="apidocCodeKeywordSpan">_chooseHttpLibrary</span>( parsedUrl );
+
+
+var realHeaders= {};
+for( var key in this._customHeaders ) {
+  realHeaders[key]= this._customHeaders[key];
+}
+if( headers ) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth2.prototype._executeRequest" id="apidoc.element.oauth.OAuth2.prototype._executeRequest">
+        function <span class="apidocSignatureSpan">oauth.OAuth2.prototype.</span>_executeRequest
+        <span class="apidocSignatureSpan">( http_library, options, post_body, callback )</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_executeRequest = function ( http_library, options, post_body, callback ) {
+  // Some hosts *cough* google appear to close the connection early / send no content-length header
+  // allow this behaviour.
+  var allowEarlyClose= OAuthUtils.isAnEarlyCloseHost(options.host);
+  var callbackCalled= false;
+  function passBackControl( response, result ) {
+    if(!callbackCalled) {
+      callbackCalled=true;
+      if( !(response.statusCode &#x3e;= 200 &#x26;&#x26; response.statusCode &#x3c;= 299) &#x26;&#x26; (response.statusCode != 301) &#x26;&#x26; (response.statusCode !=
+302) ) {
+        callback({ statusCode: response.statusCode, data: result });
+      } else {
+        callback(null, result, response);
+      }
+    }
+  }
+
+  var result= &#x22;&#x22;;
+
+  //set the agent on the request options
+  if (this._agent) {
+    options.agent = this._agent;
+  }
+
+  var request = http_library.request(options);
+  request.on(&#x27;response&#x27;, function (response) {
+    response.on(&#x22;data&#x22;, function (chunk) {
+      result+= chunk
+    });
+    response.on(&#x22;close&#x22;, function (err) {
+      if( allowEarlyClose ) {
+        passBackControl( response, result );
+      }
+    });
+    response.addListener(&#x22;end&#x22;, function () {
+      passBackControl( response, result );
+    });
+  });
+  request.on(&#x27;error&#x27;, function(e) {
+    callbackCalled= true;
+    callback(e);
+  });
+
+  if( (options.method == &#x27;POST&#x27; || options.method == &#x27;PUT&#x27;) &#x26;&#x26; post_body ) {
+     request.write(post_body);
+  }
+  request.end();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  host:parsedUrl.hostname,
+  port: parsedUrl.port,
+  path: parsedUrl.pathname + queryStr,
+  method: method,
+  headers: realHeaders
+};
+
+this.<span class="apidocCodeKeywordSpan">_executeRequest</span>( http_library, options, post_body, callback );
+}
+
+exports.OAuth2.prototype._executeRequest= function( http_library, options, post_body, callback ) {
+// Some hosts *cough* google appear to close the connection early / send no content-length header
+// allow this behaviour.
+var allowEarlyClose= OAuthUtils.isAnEarlyCloseHost(options.host);
+var callbackCalled= false;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth2.prototype._getAccessTokenUrl" id="apidoc.element.oauth.OAuth2.prototype._getAccessTokenUrl">
+        function <span class="apidocSignatureSpan">oauth.OAuth2.prototype.</span>_getAccessTokenUrl
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_getAccessTokenUrl = function () {
+  return this._baseSite + this._accessTokenUrl;<span class="apidocCodeCommentSpan"> /* + &#x22;?&#x22; + querystring.stringify(params); */
+</span>}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+var post_data= querystring.stringify( params );
+var post_headers= {
+     &#x27;Content-Type&#x27;: &#x27;application/x-www-form-urlencoded&#x27;
+ };
+
+
+this._request(&#x22;POST&#x22;, this.<span class="apidocCodeKeywordSpan">_getAccessTokenUrl</span>(), post_headers, post_data, null
+, function(error, data, response) {
+  if( error )  callback(error);
+  else {
+    var results;
+    try {
+      // As of http://tools.ietf.org/html/draft-ietf-oauth-v2-07
+      // responses should be in JSON
+      results= JSON.parse( data );
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth2.prototype._request" id="apidoc.element.oauth.OAuth2.prototype._request">
+        function <span class="apidocSignatureSpan">oauth.OAuth2.prototype.</span>_request
+        <span class="apidocSignatureSpan">(method, url, headers, post_body, access_token, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_request = function (method, url, headers, post_body, access_token, callback) {
+
+  var parsedUrl= URL.parse( url, true );
+  if( parsedUrl.protocol == &#x22;https:&#x22; &#x26;&#x26; !parsedUrl.port ) {
+    parsedUrl.port= 443;
+  }
+
+  var http_library= this._chooseHttpLibrary( parsedUrl );
+
+
+  var realHeaders= {};
+  for( var key in this._customHeaders ) {
+    realHeaders[key]= this._customHeaders[key];
+  }
+  if( headers ) {
+    for(var key in headers) {
+      realHeaders[key] = headers[key];
+    }
+  }
+  realHeaders[&#x27;Host&#x27;]= parsedUrl.host;
+
+  if (!realHeaders[&#x27;User-Agent&#x27;]) {
+    realHeaders[&#x27;User-Agent&#x27;] = &#x27;Node-oauth&#x27;;
+  }
+
+  if( post_body ) {
+      if ( Buffer.isBuffer(post_body) ) {
+          realHeaders[&#x22;Content-Length&#x22;]= post_body.length;
+      } else {
+          realHeaders[&#x22;Content-Length&#x22;]= Buffer.byteLength(post_body);
+      }
+  } else {
+      realHeaders[&#x22;Content-length&#x22;]= 0;
+  }
+
+  if( access_token &#x26;&#x26; !(&#x27;Authorization&#x27; in realHeaders)) {
+    if( ! parsedUrl.query ) parsedUrl.query= {};
+    parsedUrl.query[this._accessTokenName]= access_token;
+  }
+
+  var queryStr= querystring.stringify(parsedUrl.query);
+  if( queryStr ) queryStr=  &#x22;?&#x22; + queryStr;
+  var options = {
+    host:parsedUrl.hostname,
+    port: parsedUrl.port,
+    path: parsedUrl.pathname + queryStr,
+    method: method,
+    headers: realHeaders
+  };
+
+  this._executeRequest( http_library, options, post_body, callback );
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+var post_data= querystring.stringify( params );
+var post_headers= {
+     &#x27;Content-Type&#x27;: &#x27;application/x-www-form-urlencoded&#x27;
+ };
+
+
+this.<span class="apidocCodeKeywordSpan">_request</span>(&#x22;POST&#x22;, this._getAccessTokenUrl(), post_headers, post_data, null
+, function(error, data, response) {
+  if( error )  callback(error);
+  else {
+    var results;
+    try {
+      // As of http://tools.ietf.org/html/draft-ietf-oauth-v2-07
+      // responses should be in JSON
+      results= JSON.parse( data );
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth2.prototype.buildAuthHeader" id="apidoc.element.oauth.OAuth2.prototype.buildAuthHeader">
+        function <span class="apidocSignatureSpan">oauth.OAuth2.prototype.</span>buildAuthHeader
+        <span class="apidocSignatureSpan">(token)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">buildAuthHeader = function (token) {
+  return this._authMethod + &#x27; &#x27; + token;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+// Deprecated
+exports.OAuth2.prototype.getProtectedResource= function(url, access_token, callback) {
+  this._request(&#x22;GET&#x22;, url, {}, &#x22;&#x22;, access_token, callback );
+}
+
+exports.OAuth2.prototype.get= function(url, access_token, callback) {
+  if( this._useAuthorizationHeaderForGET ) {
+    var headers= {&#x27;Authorization&#x27;: this.<span class="apidocCodeKeywordSpan">buildAuthHeader</span>(access_token) }
+    access_token= null;
+  }
+  else {
+    headers= {};
+  }
+  this._request(&#x22;GET&#x22;, url, headers, &#x22;&#x22;, access_token, callback );
+}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth2.prototype.get" id="apidoc.element.oauth.OAuth2.prototype.get">
+        function <span class="apidocSignatureSpan">oauth.OAuth2.prototype.</span>get
+        <span class="apidocSignatureSpan">(url, access_token, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">get = function (url, access_token, callback) {
+  if( this._useAuthorizationHeaderForGET ) {
+    var headers= {&#x27;Authorization&#x27;: this.buildAuthHeader(access_token) }
+    access_token= null;
+  }
+  else {
+    headers= {};
+  }
+  this._request(&#x22;GET&#x22;, url, headers, &#x22;&#x22;, access_token, callback );
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  &#x27;https://api.twitter.com/oauth/access_token&#x27;,
+  &#x27;your application consumer key&#x27;,
+  &#x27;your application secret&#x27;,
+  &#x27;1.0A&#x27;,
+  null,
+  &#x27;HMAC-SHA1&#x27;
+);
+oauth.<span class="apidocCodeKeywordSpan">get</span>(
+  &#x27;https://api.twitter.com/1.1/trends/place.json?id=23424977&#x27;,
+  &#x27;your user token for this app&#x27;, //test user token
+  &#x27;your user secret for this app&#x27;, //test user secret
+  function (e, data, res){
+    if (e) console.error(e);
+    console.log(require(&#x27;util&#x27;).inspect(data));
+    done();
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth2.prototype.getAuthorizeUrl" id="apidoc.element.oauth.OAuth2.prototype.getAuthorizeUrl">
+        function <span class="apidocSignatureSpan">oauth.OAuth2.prototype.</span>getAuthorizeUrl
+        <span class="apidocSignatureSpan">( params )</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getAuthorizeUrl = function ( params ) {
+  var params= params || {};
+  params[&#x27;client_id&#x27;] = this._clientId;
+  return this._baseSite + this._authorizeUrl + &#x22;?&#x22; + querystring.stringify(params);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth2.prototype.getOAuthAccessToken" id="apidoc.element.oauth.OAuth2.prototype.getOAuthAccessToken">
+        function <span class="apidocSignatureSpan">oauth.OAuth2.prototype.</span>getOAuthAccessToken
+        <span class="apidocSignatureSpan">(code, params, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getOAuthAccessToken = function (code, params, callback) {
+  var params= params || {};
+  params[&#x27;client_id&#x27;] = this._clientId;
+  params[&#x27;client_secret&#x27;] = this._clientSecret;
+  var codeParam = (params.grant_type === &#x27;refresh_token&#x27;) ? &#x27;refresh_token&#x27; : &#x27;code&#x27;;
+  params[codeParam]= code;
+
+  var post_data= querystring.stringify( params );
+  var post_headers= {
+       &#x27;Content-Type&#x27;: &#x27;application/x-www-form-urlencoded&#x27;
+   };
+
+
+  this._request(&#x22;POST&#x22;, this._getAccessTokenUrl(), post_headers, post_data, null, function(error, data, response) {
+    if( error )  callback(error);
+    else {
+      var results;
+      try {
+        // As of http://tools.ietf.org/html/draft-ietf-oauth-v2-07
+        // responses should be in JSON
+        results= JSON.parse( data );
+      }
+      catch(e) {
+        // .... However both Facebook + Github currently use rev05 of the spec
+        // and neither seem to specify a content-type correctly in their response headers :(
+        // clients of these services will suffer a *minor* performance cost of the exception
+        // being thrown
+        results= querystring.parse( data );
+      }
+      var access_token= results[&#x22;access_token&#x22;];
+      var refresh_token= results[&#x22;refresh_token&#x22;];
+      delete results[&#x22;refresh_token&#x22;];
+      callback(null, access_token, refresh_token, results); // callback results =-=
+    }
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  var twitterConsumerSecret = &#x27;your secret&#x27;;
+  var oauth2 = new OAuth2(server.config.keys.twitter.consumerKey,
+    twitterConsumerSecret,
+    &#x27;https://api.twitter.com/&#x27;,
+    null,
+    &#x27;oauth2/token&#x27;,
+    null);
+  oauth2.<span class="apidocCodeKeywordSpan">getOAuthAccessToken</span>(
+    &#x27;&#x27;,
+    {&#x27;grant_type&#x27;:&#x27;client_credentials&#x27;},
+    function (e, access_token, refresh_token, results){
+    console.log(&#x27;bearer: &#x27;,access_token);
+    done();
+  });
+});
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth2.prototype.getProtectedResource" id="apidoc.element.oauth.OAuth2.prototype.getProtectedResource">
+        function <span class="apidocSignatureSpan">oauth.OAuth2.prototype.</span>getProtectedResource
+        <span class="apidocSignatureSpan">(url, access_token, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getProtectedResource = function (url, access_token, callback) {
+  this._request(&#x22;GET&#x22;, url, {}, &#x22;&#x22;, access_token, callback );
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    util.puts(&#x22;Requesting access token&#x22;)
+    oa.getOAuthAccessToken(oauth_token, oauth_token_secret, function(error, oauth_access_token, oauth_access_token_secret, results2
+) {
+      util.puts(&#x27;oauth_access_token :&#x27; + oauth_access_token)
+      util.puts(&#x27;oauth_token_secret :&#x27; + oauth_access_token_secret)
+      util.puts(&#x27;accesstoken results :&#x27; + util.inspect(results2))
+      util.puts(&#x22;Requesting access token&#x22;)
+      var data= &#x22;&#x22;;
+      oa.<span class="apidocCodeKeywordSpan">getProtectedResource</span>(&#x22;http://term.ie/oauth/example/echo_api.php?foo=bar
+&#x26;too=roo&#x22;, &#x22;GET&#x22;, oauth_access_token, oauth_access_token_secret,  function (error, data, response) {
+          util.puts(data);
+      });
+    });
+  }
+})
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth2.prototype.setAccessTokenName" id="apidoc.element.oauth.OAuth2.prototype.setAccessTokenName">
+        function <span class="apidocSignatureSpan">oauth.OAuth2.prototype.</span>setAccessTokenName
+        <span class="apidocSignatureSpan">( name )</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">setAccessTokenName = function ( name ) {
+  this._accessTokenName= name;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth2.prototype.setAgent" id="apidoc.element.oauth.OAuth2.prototype.setAgent">
+        function <span class="apidocSignatureSpan">oauth.OAuth2.prototype.</span>setAgent
+        <span class="apidocSignatureSpan">(agent)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">setAgent = function (agent) {
+  this._agent = agent;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth2.prototype.setAuthMethod" id="apidoc.element.oauth.OAuth2.prototype.setAuthMethod">
+        function <span class="apidocSignatureSpan">oauth.OAuth2.prototype.</span>setAuthMethod
+        <span class="apidocSignatureSpan">( authMethod )</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">setAuthMethod = function ( authMethod ) {
+  this._authMethod = authMethod;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuth2.prototype.useAuthorizationHeaderforGET" id="apidoc.element.oauth.OAuth2.prototype.useAuthorizationHeaderforGET">
+        function <span class="apidocSignatureSpan">oauth.OAuth2.prototype.</span>useAuthorizationHeaderforGET
+        <span class="apidocSignatureSpan">(useIt)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">useAuthorizationHeaderforGET = function (useIt) {
+  this._useAuthorizationHeaderForGET= useIt;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.oauth.OAuthEcho" id="apidoc.module.oauth.OAuthEcho">module oauth.OAuthEcho</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.OAuthEcho.OAuthEcho" id="apidoc.element.oauth.OAuthEcho.OAuthEcho">
+        function <span class="apidocSignatureSpan">oauth.</span>OAuthEcho
+        <span class="apidocSignatureSpan">(realm, verify_credentials, consumerKey, consumerSecret, version, signatureMethod, nonceSize, customHeaders)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">OAuthEcho = function (realm, verify_credentials, consumerKey, consumerSecret, version, signatureMethod, nonceSize, customHeaders) {
+  this._isEcho = true;
+
+  this._realm= realm;
+  this._verifyCredentials = verify_credentials;
+  this._consumerKey= consumerKey;
+  this._consumerSecret= this._encodeData( consumerSecret );
+  if (signatureMethod == &#x22;RSA-SHA1&#x22;) {
+    this._privateKey = consumerSecret;
+  }
+  this._version= version;
+
+  if( signatureMethod != &#x22;PLAINTEXT&#x22; &#x26;&#x26; signatureMethod != &#x22;HMAC-SHA1&#x22; &#x26;&#x26; signatureMethod != &#x22;RSA-SHA1&#x22;)
+    throw new Error(&#x22;Un-supported signature method: &#x22; + signatureMethod );
+  this._signatureMethod= signatureMethod;
+  this._nonceSize= nonceSize || 32;
+  this._headers= customHeaders || {&#x22;Accept&#x22; : &#x22;*/*&#x22;,
+                                   &#x22;Connection&#x22; : &#x22;close&#x22;,
+                                   &#x22;User-Agent&#x22; : &#x22;Node authentication&#x22;};
+  this._oauthParameterSeperator = &#x22;,&#x22;;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.oauth._utils" id="apidoc.module.oauth._utils">module oauth._utils</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.oauth._utils.isAnEarlyCloseHost" id="apidoc.element.oauth._utils.isAnEarlyCloseHost">
+        function <span class="apidocSignatureSpan">oauth._utils.</span>isAnEarlyCloseHost
+        <span class="apidocSignatureSpan">( hostName )</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">isAnEarlyCloseHost = function ( hostName ) {
+  return hostName &#x26;&#x26; hostName.match(&#x22;.*google(apis)?.com$&#x22;)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  var clientOptions = this._clientOptions;
+  if( callback ) {
+var data=&#x22;&#x22;;
+var self= this;
+
+// Some hosts *cough* google appear to close the connection early / send no content-length header
+// allow this behaviour.
+var allowEarlyClose= OAuthUtils.<span class="apidocCodeKeywordSpan">isAnEarlyCloseHost</span>( parsedUrl.hostname );
+var callbackCalled= false;
+var passBackControl = function( response ) {
+  if(!callbackCalled) {
+    callbackCalled= true;
+    if ( response.statusCode &#x3e;= 200 &#x26;&#x26; response.statusCode &#x3c;= 299 ) {
+      callback(null, data, response);
+    } else {
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.oauth.oauth" id="apidoc.module.oauth.oauth">module oauth.oauth</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.oauth.OAuth" id="apidoc.element.oauth.oauth.OAuth">
+        function <span class="apidocSignatureSpan">oauth.oauth.</span>OAuth
+        <span class="apidocSignatureSpan">(requestUrl, accessUrl, consumerKey, consumerSecret, version, authorize_callback, signatureMethod, nonceSize, customHeaders )</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">OAuth = function (requestUrl, accessUrl, consumerKey, consumerSecret, version, authorize_callback, signatureMethod, nonceSize, customHeaders ) {
+  this._isEcho = false;
+
+  this._requestUrl= requestUrl;
+  this._accessUrl= accessUrl;
+  this._consumerKey= consumerKey;
+  this._consumerSecret= this._encodeData( consumerSecret );
+  if (signatureMethod == &#x22;RSA-SHA1&#x22;) {
+    this._privateKey = consumerSecret;
+  }
+  this._version= version;
+  if( authorize_callback === undefined ) {
+    this._authorize_callback= &#x22;oob&#x22;;
+  }
+  else {
+    this._authorize_callback= authorize_callback;
+  }
+
+  if( signatureMethod != &#x22;PLAINTEXT&#x22; &#x26;&#x26; signatureMethod != &#x22;HMAC-SHA1&#x22; &#x26;&#x26; signatureMethod != &#x22;RSA-SHA1&#x22;)
+    throw new Error(&#x22;Un-supported signature method: &#x22; + signatureMethod )
+  this._signatureMethod= signatureMethod;
+  this._nonceSize= nonceSize || 32;
+  this._headers= customHeaders || {&#x22;Accept&#x22; : &#x22;*/*&#x22;,
+                                   &#x22;Connection&#x22; : &#x22;close&#x22;,
+                                   &#x22;User-Agent&#x22; : &#x22;Node authentication&#x22;}
+  this._clientOptions= this._defaultClientOptions= {&#x22;requestTokenHttpMethod&#x22;: &#x22;POST&#x22;,
+                                                    &#x22;accessTokenHttpMethod&#x22;: &#x22;POST&#x22;,
+                                                    &#x22;followRedirects&#x22;: true};
+  this._oauthParameterSeperator = &#x22;,&#x22;;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+## OAuth1.0
+
+```javascript
+describe(&#x27;OAuth1.0&#x27;,function(){
+var OAuth = require(&#x27;oauth&#x27;);
+
+it(&#x27;tests trends Twitter API v1.1&#x27;,function(done){
+  var oauth = new OAuth.<span class="apidocCodeKeywordSpan">OAuth</span>(
+    &#x27;https://api.twitter.com/oauth/request_token&#x27;,
+    &#x27;https://api.twitter.com/oauth/access_token&#x27;,
+    &#x27;your application consumer key&#x27;,
+    &#x27;your application secret&#x27;,
+    &#x27;1.0A&#x27;,
+    null,
+    &#x27;HMAC-SHA1&#x27;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.oauth.OAuthEcho" id="apidoc.element.oauth.oauth.OAuthEcho">
+        function <span class="apidocSignatureSpan">oauth.oauth.</span>OAuthEcho
+        <span class="apidocSignatureSpan">(realm, verify_credentials, consumerKey, consumerSecret, version, signatureMethod, nonceSize, customHeaders)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">OAuthEcho = function (realm, verify_credentials, consumerKey, consumerSecret, version, signatureMethod, nonceSize, customHeaders) {
+  this._isEcho = true;
+
+  this._realm= realm;
+  this._verifyCredentials = verify_credentials;
+  this._consumerKey= consumerKey;
+  this._consumerSecret= this._encodeData( consumerSecret );
+  if (signatureMethod == &#x22;RSA-SHA1&#x22;) {
+    this._privateKey = consumerSecret;
+  }
+  this._version= version;
+
+  if( signatureMethod != &#x22;PLAINTEXT&#x22; &#x26;&#x26; signatureMethod != &#x22;HMAC-SHA1&#x22; &#x26;&#x26; signatureMethod != &#x22;RSA-SHA1&#x22;)
+    throw new Error(&#x22;Un-supported signature method: &#x22; + signatureMethod );
+  this._signatureMethod= signatureMethod;
+  this._nonceSize= nonceSize || 32;
+  this._headers= customHeaders || {&#x22;Accept&#x22; : &#x22;*/*&#x22;,
+                                   &#x22;Connection&#x22; : &#x22;close&#x22;,
+                                   &#x22;User-Agent&#x22; : &#x22;Node authentication&#x22;};
+  this._oauthParameterSeperator = &#x22;,&#x22;;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.oauth.oauth2" id="apidoc.module.oauth.oauth2">module oauth.oauth2</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.oauth2.OAuth2" id="apidoc.element.oauth.oauth2.OAuth2">
+        function <span class="apidocSignatureSpan">oauth.oauth2.</span>OAuth2
+        <span class="apidocSignatureSpan">(clientId, clientSecret, baseSite, authorizePath, accessTokenPath, customHeaders)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">OAuth2 = function (clientId, clientSecret, baseSite, authorizePath, accessTokenPath, customHeaders) {
+  this._clientId= clientId;
+  this._clientSecret= clientSecret;
+  this._baseSite= baseSite;
+  this._authorizeUrl= authorizePath || &#x22;/oauth/authorize&#x22;;
+  this._accessTokenUrl= accessTokenPath || &#x22;/oauth/access_token&#x22;;
+  this._accessTokenName= &#x22;access_token&#x22;;
+  this._authMethod= &#x22;Bearer&#x22;;
+  this._customHeaders = customHeaders || {};
+  this._useAuthorizationHeaderForGET= false;
+
+  //our agent
+  this._agent = undefined;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.oauth.sha1" id="apidoc.module.oauth.sha1">module oauth.sha1</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.sha1.HMACSHA1" id="apidoc.element.oauth.sha1.HMACSHA1">
+        function <span class="apidocSignatureSpan">oauth.sha1.</span>HMACSHA1
+        <span class="apidocSignatureSpan">(key, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">HMACSHA1 = function (key, data) {
+  return b64_hmac_sha1(key, data);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+     hash= crypto.createSign(&#x22;RSA-SHA1&#x22;).update(signatureBase).sign(key, &#x27;base64&#x27;);
+   }
+   else {
+       if( crypto.Hmac ) {
+         hash = crypto.createHmac(&#x22;sha1&#x22;, key).update(signatureBase).digest(&#x22;base64&#x22;);
+       }
+       else {
+         hash= sha1.<span class="apidocCodeKeywordSpan">HMACSHA1</span>(key, signatureBase);
+       }
+   }
+   return hash;
+}
+exports.OAuth.prototype.NONCE_CHARS= [&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;,&#x27;d&#x27;,&#x27;e&#x27;,&#x27;f&#x27;,&#x27;
+g&#x27;,&#x27;h&#x27;,&#x27;i&#x27;,&#x27;j&#x27;,&#x27;k&#x27;,&#x27;l&#x27;,&#x27;m&#x27;,&#x27;n&#x27;,
+&#x27;o&#x27;,&#x27;p&#x27;,&#x27;q&#x27;,&#x27;r&#x27;,&#x27;s&#x27;,&#x27;t&#x27;,&#x27;u&#x27;,&#x27;v&#x27;,&#x27;w&#x27;,&#
+x27;x&#x27;,&#x27;y&#x27;,&#x27;z&#x27;,&#x27;A&#x27;,&#x27;B&#x27;,
+&#x27;C&#x27;,&#x27;D&#x27;,&#x27;E&#x27;,&#x27;F&#x27;,&#x27;G&#x27;,&#x27;H&#x27;,&#x27;I&#x27;,&#x27;J&#x27;,&#x27;K&#x27;,&#
+x27;L&#x27;,&#x27;M&#x27;,&#x27;N&#x27;,&#x27;O&#x27;,&#x27;P&#x27;,
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.oauth.shared" id="apidoc.module.oauth.shared">module oauth.shared</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.shared.DummyRequest" id="apidoc.element.oauth.shared.DummyRequest">
+        function <span class="apidocSignatureSpan">oauth.shared.</span>DummyRequest
+        <span class="apidocSignatureSpan">( response )</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">DummyRequest = function ( response ) {
+  this.response=  response;
+  this.responseSent= false;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.oauth.shared.DummyResponse" id="apidoc.element.oauth.shared.DummyResponse">
+        function <span class="apidocSignatureSpan">oauth.shared.</span>DummyResponse
+        <span class="apidocSignatureSpan">( statusCode )</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">DummyResponse = function ( statusCode ) {
+    this.statusCode= statusCode;
+    this.headers= {};
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
