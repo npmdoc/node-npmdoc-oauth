@@ -3,9 +3,11 @@
 
 [![NPM](https://nodei.co/npm/oauth.png?downloads=true)](https://www.npmjs.com/package/oauth)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-oauth/build/screen-capture.buildNpmdoc.browser._2Fhome_2Ftravis_2Fbuild_2Fnpmdoc_2Fnode-npmdoc-oauth_2Ftmp_2Fbuild_2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-oauth/build..beta..travis-ci.org/apidoc.html)
+[![apidoc](https://npmdoc.github.io/node-npmdoc-oauth/build/screenCapture.buildNpmdoc.browser.%2Fhome%2Ftravis%2Fbuild%2Fnpmdoc%2Fnode-npmdoc-oauth%2Ftmp%2Fbuild%2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-oauth/build/apidoc.html)
 
-![package-listing](https://npmdoc.github.io/node-npmdoc-oauth/build/screen-capture.npmPackageListing.svg)
+![npmPackageListing](https://npmdoc.github.io/node-npmdoc-oauth/build/screenCapture.npmPackageListing.svg)
+
+![npmPackageDependencyTree](https://npmdoc.github.io/node-npmdoc-oauth/build/screenCapture.npmPackageDependencyTree.svg)
 
 
 
@@ -71,7 +73,6 @@
 1.  object <span class="apidocSignatureSpan">oauth.</span>_utils
 1.  object <span class="apidocSignatureSpan">oauth.</span>oauth2
 1.  object <span class="apidocSignatureSpan">oauth.</span>sha1
-1.  object <span class="apidocSignatureSpan">oauth.</span>shared
 
 #### [module oauth.OAuth](#apidoc.module.oauth.OAuth)
 1.  [function <span class="apidocSignatureSpan">oauth.</span>OAuth (requestUrl, accessUrl, consumerKey, consumerSecret, version, authorize_callback, signatureMethod, nonceSize, customHeaders )](#apidoc.element.oauth.OAuth.OAuth)
@@ -139,10 +140,6 @@
 
 #### [module oauth.sha1](#apidoc.module.oauth.sha1)
 1.  [function <span class="apidocSignatureSpan">oauth.sha1.</span>HMACSHA1 (key, data)](#apidoc.element.oauth.sha1.HMACSHA1)
-
-#### [module oauth.shared](#apidoc.module.oauth.shared)
-1.  [function <span class="apidocSignatureSpan">oauth.shared.</span>DummyRequest ( response )](#apidoc.element.oauth.shared.DummyRequest)
-1.  [function <span class="apidocSignatureSpan">oauth.shared.</span>DummyResponse ( statusCode )](#apidoc.element.oauth.shared.DummyResponse)
 
 
 
@@ -1220,24 +1217,7 @@ function(error, data, response) {
 ```
 - example usage
 ```shell
-...
-                "http://term.ie/oauth/example/access_token.php",
-                "key",
-                "secret",
-                "1.0",
-                null,
-                "HMAC-SHA1")
-
-oa.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results){
-if(error) util.puts('error :' + error)
-else {
-  util.puts('oauth_token :' + oauth_token)
-  util.puts('oauth_token_secret :' + oauth_token_secret)
-  util.puts('requestoken results :' + util.inspect(results))
-  util.puts("Requesting access token")
-  oa.getOAuthAccessToken(oauth_token, oauth_token_secret, function(error, oauth_access_token, oauth_access_token_secret, results2
-) {
-...
+n/a
 ```
 
 #### <a name="apidoc.element.oauth.OAuth.prototype.getProtectedResource"></a>[function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>getProtectedResource (url, method, oauth_token, oauth_token_secret, callback)](#apidoc.element.oauth.OAuth.prototype.getProtectedResource)
@@ -1249,23 +1229,7 @@ getProtectedResource = function (url, method, oauth_token, oauth_token_secret, c
 ```
 - example usage
 ```shell
-...
-    util.puts("Requesting access token")
-    oa.getOAuthAccessToken(oauth_token, oauth_token_secret, function(error, oauth_access_token, oauth_access_token_secret, results2
-) {
-      util.puts('oauth_access_token :' + oauth_access_token)
-      util.puts('oauth_token_secret :' + oauth_access_token_secret)
-      util.puts('accesstoken results :' + util.inspect(results2))
-      util.puts("Requesting access token")
-      var data= "";
-      oa.getProtectedResource("http://term.ie/oauth/example/echo_api.php?foo=bar&too=roo", "GET", oauth_access_token, oauth_access_token_secret
-,  function (error, data, response) {
-          util.puts(data);
-      });
-    });
-  }
-})
-...
+n/a
 ```
 
 #### <a name="apidoc.element.oauth.OAuth.prototype.post"></a>[function <span class="apidocSignatureSpan">oauth.OAuth.prototype.</span>post (url, oauth_token, oauth_token_secret, post_body, post_content_type, callback)](#apidoc.element.oauth.OAuth.prototype.post)
@@ -1731,23 +1695,7 @@ getProtectedResource = function (url, access_token, callback) {
 ```
 - example usage
 ```shell
-...
-    util.puts("Requesting access token")
-    oa.getOAuthAccessToken(oauth_token, oauth_token_secret, function(error, oauth_access_token, oauth_access_token_secret, results2
-) {
-      util.puts('oauth_access_token :' + oauth_access_token)
-      util.puts('oauth_token_secret :' + oauth_access_token_secret)
-      util.puts('accesstoken results :' + util.inspect(results2))
-      util.puts("Requesting access token")
-      var data= "";
-      oa.getProtectedResource("http://term.ie/oauth/example/echo_api.php?foo=bar&too=roo", "GET", oauth_access_token, oauth_access_token_secret
-,  function (error, data, response) {
-          util.puts(data);
-      });
-    });
-  }
-})
-...
+n/a
 ```
 
 #### <a name="apidoc.element.oauth.OAuth2.prototype.setAccessTokenName"></a>[function <span class="apidocSignatureSpan">oauth.OAuth2.prototype.</span>setAccessTokenName ( name )](#apidoc.element.oauth.OAuth2.prototype.setAccessTokenName)
@@ -2010,36 +1958,6 @@ exports.OAuth.prototype.NONCE_CHARS= ['a','b','c','d','e','f','g','h','i','j','k
 'o','p','q','r','s','t','u','v','w','x','y','z','A','B',
 'C','D','E','F','G','H','I','J','K','L','M','N','O','P',
 ...
-```
-
-
-
-# <a name="apidoc.module.oauth.shared"></a>[module oauth.shared](#apidoc.module.oauth.shared)
-
-#### <a name="apidoc.element.oauth.shared.DummyRequest"></a>[function <span class="apidocSignatureSpan">oauth.shared.</span>DummyRequest ( response )](#apidoc.element.oauth.shared.DummyRequest)
-- description and source-code
-```javascript
-DummyRequest = function ( response ) {
-  this.response=  response;
-  this.responseSent= false;
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.oauth.shared.DummyResponse"></a>[function <span class="apidocSignatureSpan">oauth.shared.</span>DummyResponse ( statusCode )](#apidoc.element.oauth.shared.DummyResponse)
-- description and source-code
-```javascript
-DummyResponse = function ( statusCode ) {
-    this.statusCode= statusCode;
-    this.headers= {};
-}
-```
-- example usage
-```shell
-n/a
 ```
 
 
