@@ -124,12 +124,6 @@
 
         </li>
 
-        <li>
-
-            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">oauth.</span>shared</span>
-
-        </li>
-
     </ol></li>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.oauth.OAuth">module oauth.OAuth</a><ol>
@@ -606,28 +600,6 @@
 
     </ol></li>
 
-    <li class="apidocModuleLi"><a href="#apidoc.module.oauth.shared">module oauth.shared</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.oauth.shared.DummyRequest">
-            function <span class="apidocSignatureSpan">oauth.shared.</span>DummyRequest
-            <span class="apidocSignatureSpan">( response )</span>
-            </a>
-
-        </li>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.oauth.shared.DummyResponse">
-            function <span class="apidocSignatureSpan">oauth.shared.</span>DummyResponse
-            <span class="apidocSignatureSpan">( statusCode )</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
 </ol></div>
 
 <div class="apidocSectionDiv">
@@ -748,8 +720,6 @@ it(&#x27;tests trends Twitter API v1.1&#x27;,function(done){
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-
-
 
 
 
@@ -1804,24 +1774,7 @@ function(error, data, response) {
     }
   });
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-                &#x22;http://term.ie/oauth/example/access_token.php&#x22;,
-                &#x22;key&#x22;,
-                &#x22;secret&#x22;,
-                &#x22;1.0&#x22;,
-                null,
-                &#x22;HMAC-SHA1&#x22;)
-
-oa.<span class="apidocCodeKeywordSpan">getOAuthRequestToken</span>(function(error, oauth_token, oauth_token_secret, results){
-if(error) util.puts(&#x27;error :&#x27; + error)
-else {
-  util.puts(&#x27;oauth_token :&#x27; + oauth_token)
-  util.puts(&#x27;oauth_token_secret :&#x27; + oauth_token_secret)
-  util.puts(&#x27;requestoken results :&#x27; + util.inspect(results))
-  util.puts(&#x22;Requesting access token&#x22;)
-  oa.getOAuthAccessToken(oauth_token, oauth_token_secret, function(error, oauth_access_token, oauth_access_token_secret, results2
-) {
-...</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
 
@@ -1836,23 +1789,7 @@ else {
     <li>description and source-code<pre class="apidocCodePre">getProtectedResource = function (url, method, oauth_token, oauth_token_secret, callback) {
   this._performSecureRequest( oauth_token, oauth_token_secret, method, url, null, &#x22;&#x22;, null, callback );
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-    util.puts(&#x22;Requesting access token&#x22;)
-    oa.getOAuthAccessToken(oauth_token, oauth_token_secret, function(error, oauth_access_token, oauth_access_token_secret, results2
-) {
-      util.puts(&#x27;oauth_access_token :&#x27; + oauth_access_token)
-      util.puts(&#x27;oauth_token_secret :&#x27; + oauth_access_token_secret)
-      util.puts(&#x27;accesstoken results :&#x27; + util.inspect(results2))
-      util.puts(&#x22;Requesting access token&#x22;)
-      var data= &#x22;&#x22;;
-      oa.<span class="apidocCodeKeywordSpan">getProtectedResource</span>(&#x22;http://term.ie/oauth/example/echo_api.php?foo=bar
-&#x26;too=roo&#x22;, &#x22;GET&#x22;, oauth_access_token, oauth_access_token_secret,  function (error, data, response) {
-          util.puts(data);
-      });
-    });
-  }
-})
-...</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
 
@@ -2366,23 +2303,7 @@ oauth.<span class="apidocCodeKeywordSpan">get</span>(
     <li>description and source-code<pre class="apidocCodePre">getProtectedResource = function (url, access_token, callback) {
   this._request(&#x22;GET&#x22;, url, {}, &#x22;&#x22;, access_token, callback );
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-    util.puts(&#x22;Requesting access token&#x22;)
-    oa.getOAuthAccessToken(oauth_token, oauth_token_secret, function(error, oauth_access_token, oauth_access_token_secret, results2
-) {
-      util.puts(&#x27;oauth_access_token :&#x27; + oauth_access_token)
-      util.puts(&#x27;oauth_token_secret :&#x27; + oauth_access_token_secret)
-      util.puts(&#x27;accesstoken results :&#x27; + util.inspect(results2))
-      util.puts(&#x22;Requesting access token&#x22;)
-      var data= &#x22;&#x22;;
-      oa.<span class="apidocCodeKeywordSpan">getProtectedResource</span>(&#x22;http://term.ie/oauth/example/echo_api.php?foo=bar
-&#x26;too=roo&#x22;, &#x22;GET&#x22;, oauth_access_token, oauth_access_token_secret,  function (error, data, response) {
-          util.puts(data);
-      });
-    });
-  }
-})
-...</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
 
@@ -2683,43 +2604,6 @@ x27;x&#x27;,&#x27;y&#x27;,&#x27;z&#x27;,&#x27;A&#x27;,&#x27;B&#x27;,
 &#x27;C&#x27;,&#x27;D&#x27;,&#x27;E&#x27;,&#x27;F&#x27;,&#x27;G&#x27;,&#x27;H&#x27;,&#x27;I&#x27;,&#x27;J&#x27;,&#x27;K&#x27;,&#
 x27;L&#x27;,&#x27;M&#x27;,&#x27;N&#x27;,&#x27;O&#x27;,&#x27;P&#x27;,
 ...</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.oauth.shared" id="apidoc.module.oauth.shared">module oauth.shared</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.oauth.shared.DummyRequest" id="apidoc.element.oauth.shared.DummyRequest">
-        function <span class="apidocSignatureSpan">oauth.shared.</span>DummyRequest
-        <span class="apidocSignatureSpan">( response )</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">DummyRequest = function ( response ) {
-  this.response=  response;
-  this.responseSent= false;
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.element.oauth.shared.DummyResponse" id="apidoc.element.oauth.shared.DummyResponse">
-        function <span class="apidocSignatureSpan">oauth.shared.</span>DummyResponse
-        <span class="apidocSignatureSpan">( statusCode )</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">DummyResponse = function ( statusCode ) {
-    this.statusCode= statusCode;
-    this.headers= {};
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
 
