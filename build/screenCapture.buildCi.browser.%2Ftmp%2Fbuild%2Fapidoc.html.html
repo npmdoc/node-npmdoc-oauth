@@ -2415,20 +2415,21 @@ oauth.<span class="apidocCodeKeywordSpan">get</span>(
   return hostName &amp;&amp; hostName.match(".*google(apis)?.com$")
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  var clientOptions = this._clientOptions;
-  if( callback ) {
-var data="";
-var self= this;
 
+this._executeRequest( http_library, options, post_body, callback );
+}
+
+exports.OAuth2.prototype._executeRequest= function( http_library, options, post_body, callback ) {
 // Some hosts *cough* google appear to close the connection early / send no content-length header
 // allow this behaviour.
-var allowEarlyClose= OAuthUtils.<span class="apidocCodeKeywordSpan">isAnEarlyCloseHost</span>( parsedUrl.hostname );
+var allowEarlyClose= OAuthUtils.<span class="apidocCodeKeywordSpan">isAnEarlyCloseHost</span>(options.host);
 var callbackCalled= false;
-var passBackControl = function( response ) {
+function passBackControl( response, result ) {
   if(!callbackCalled) {
-    callbackCalled= true;
-    if ( response.statusCode &gt;= 200 &amp;&amp; response.statusCode &lt;= 299 ) {
-      callback(null, data, response);
+    callbackCalled=true;
+    if( !(response.statusCode &gt;= 200 &amp;&amp; response.statusCode &lt;= 299) &amp;&amp; (response.statusCode != 301
+) &amp;&amp; (response.statusCode != 302) ) {
+      callback({ statusCode: response.statusCode, data: result });
     } else {
 ...</pre></li>
     </ul>
